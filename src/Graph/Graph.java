@@ -2,6 +2,7 @@ package Graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Artem Solomatin on 06.07.17.
@@ -21,7 +22,7 @@ public class Graph {
     private int currentNode;
     private int startToCurrentDistance;
 
-    public Graph() {
+    Graph() {
         adjMatrix = new int[MAX_NODES][MAX_NODES];
         numNodes = 0;
         nTree = 0;
@@ -38,11 +39,25 @@ public class Graph {
         nodes.add(numNodes++, new Node(name, cost));
     }
 
-    public void addEdge(int start, int end, int weight){
+    public void addEdge(char startName, char endName, int weight){
+        int start = findNumberInNodes(startName);
+        int end = findNumberInNodes(endName);
         adjMatrix[start][end] = weight;
     }
 
-    public void minPath(int firstNode, int secondNode) {
+    private int findNumberInNodes(char c){
+        for(Node n:nodes){
+            if(n.getName() == c){
+                return nodes.indexOf(n);
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
+    public void minPath(char first, char last) {
+        int firstNode = findNumberInNodes(first);
+        int lastNode = findNumberInNodes(last);
+
         int startTree = 0;
         nodes.get(startTree).setInTree(true);
         nTree = 1;
@@ -68,7 +83,7 @@ public class Graph {
             update();
         }
 
-        routing(firstNode, secondNode);
+        routing(firstNode, lastNode);
 
         nTree = 0;
         for(int i = 0;i < numNodes;i++){

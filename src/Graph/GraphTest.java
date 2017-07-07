@@ -37,15 +37,15 @@ public class GraphTest {
         graph.addVertex('D', 20);
         graph.addVertex('E', 5);
 
-        graph.addEdge(0, 1, 50);
-        graph.addEdge(0, 3, 80);
-        graph.addEdge(1, 2, 60);
-        graph.addEdge(1, 3, 90);
-        graph.addEdge(2, 4, 40);
-        graph.addEdge(3, 2, 20);
-        graph.addEdge(3, 4, 70);
-        graph.addEdge(4, 1, 50);
+        graph.addEdge('A', 'B', 50);
+        graph.addEdge('A', 'D', 80);
+        graph.addEdge('B', 'C', 60);
+        graph.addEdge('B', 'D', 90);
+        graph.addEdge('C', 'E', 40);
+        graph.addEdge('D', 'C', 20);
+        graph.addEdge('D', 'E', 70);
+        graph.addEdge('E', 'B', 50);
 
-        graph.minPath(0, 4);
+        graph.minPath('A', 'E');
     }
 }

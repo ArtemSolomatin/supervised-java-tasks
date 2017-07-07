@@ -10,7 +10,7 @@ public class Column {
     private int distance;
     private int parent;
 
-    public Column(int parent, int distance) {
+    Column(int parent, int distance) {
         this.parent = parent;
         this.distance = distance;
     }

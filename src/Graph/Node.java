@@ -9,7 +9,7 @@ public class Node {
     private boolean inTree;
     private int cost;
 
-    public Node(char name, int cost) {
+    Node(char name, int cost) {
         this.name = name;
         this.cost = cost;
     }
