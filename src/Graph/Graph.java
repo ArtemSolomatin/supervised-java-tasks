@@ -35,7 +35,7 @@ public class Graph {
         pathMatrix = new Column[MAX_NODES];
     }
 
-    public void addVertex(char name, int cost){
+    public void addNode(char name, int cost){
         nodes.add(numNodes++, new Node(name, cost));
     }
 

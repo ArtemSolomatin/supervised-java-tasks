@@ -4,48 +4,31 @@ package Graph;
 /**
  * Created by Artem Solomatin on 06.07.17.
  * SupervisedProjects
- *//*
+ */
 public class GraphTest {
     public static void main(String[] args){
         Graph graph = new Graph();
-        /*graph.addNode("A", 0);
-        graph.addNode("B", 0);
-        graph.addNode("C", 0);
-        graph.addNode("D", 0);
-        graph.addNode("E", 0);
-        graph.addNode("F", 0);
+        graph.addNode('A', 0);
+        graph.addNode('B', 0);
+        graph.addNode('C', 0);
+        graph.addNode('D', 0);
+        graph.addNode('E', 0);
+        graph.addNode('F', 0);
+        graph.addNode('E', 0);
+        graph.addNode('G', 0);
 
-        graph.addEdge(0, 1, 20);
-        graph.addEdge(0, 2, 30);
-        graph.addEdge(3, 4, 60);
-        graph.addEdge(2, 6, 50);
-        graph.addEdge(2, 4, 40);
-        graph.addEdge(3, 5, 80);
-        graph.addEdge(5, 6, 100);
-        graph.addEdge(4, 6, 10);
+        graph.addEdge('A', 'B', 30);
+        graph.addEdge('A', 'C', 10);
+        graph.addEdge('C', 'E', 30);
+        graph.addEdge('B', 'E', 20);
+        graph.addEdge('C', 'D', 40);
+        graph.addEdge('B', 'G', 30);
+        graph.addEdge('E', 'G', 20);
+        graph.addEdge('G', 'F', 20);
+        graph.addEdge('D', 'F', 10);
+        graph.addEdge('E', 'F', 30);
+        graph.addEdge('D', 'G', 10);
 
-        graph.path();
-    }
-}*/
-
-public class GraphTest {
-    public static void main(String[] args) {
-        Graph graph = new Graph();
-        graph.addVertex('A',10);
-        graph.addVertex('B', 0);
-        graph.addVertex('C', 100);
-        graph.addVertex('D', 20);
-        graph.addVertex('E', 5);
-
-        graph.addEdge('A', 'B', 50);
-        graph.addEdge('A', 'D', 80);
-        graph.addEdge('B', 'C', 60);
-        graph.addEdge('B', 'D', 90);
-        graph.addEdge('C', 'E', 40);
-        graph.addEdge('D', 'C', 20);
-        graph.addEdge('D', 'E', 70);
-        graph.addEdge('E', 'B', 50);
-
-        graph.minPath('A', 'E');
+        graph.minPath('A', 'F');
     }
 }
