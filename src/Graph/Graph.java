@@ -13,6 +13,8 @@ import java.util.NoSuchElementException;
  */
 
 // TODO: 7/9/2017 superclass, need to be refactored
+// TODO: 7/9/2017 use maven to build project, otherwise ull be fucked up with thirdparty libraries
+
 public class Graph {
     private static final int MAX_NODES = 10;
     private static final int INFINITY = 1000_000;
