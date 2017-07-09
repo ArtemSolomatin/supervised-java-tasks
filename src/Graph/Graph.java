@@ -1,5 +1,8 @@
 package Graph;
 
+import Graph.entities.Column;
+import Graph.entities.Node;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.NoSuchElementException;
@@ -8,11 +11,13 @@ import java.util.NoSuchElementException;
  * Created by Artem Solomatin on 06.07.17.
  * SupervisedProjects
  */
+
+// TODO: 7/9/2017 superclass, need to be refactored
 public class Graph {
     private static final int MAX_NODES = 10;
     private static final int INFINITY = 1000_000;
 
-    private ArrayList<Node> nodes = new ArrayList<Node>(MAX_NODES);
+    private ArrayList<Node> nodes = new ArrayList<>(MAX_NODES);
     private int[][] adjMatrix = new int[MAX_NODES][MAX_NODES];
     private Column[] pathMatrix;
 

@@ -1,4 +1,4 @@
-package Graph;
+package Graph.entities;
 
 /**
  * Created by Artem Solomatin on 06.07.17.
@@ -9,7 +9,7 @@ public class Node {
     private boolean inTree;
     private int cost;
 
-    Node(char name, int cost) {
+    public Node(char name, int cost) {
         this.name = name;
         this.cost = cost;
     }

@@ -1,4 +1,4 @@
-package Graph;
+package Graph.entities;
 
 /**
  * Created by Artem Solomatin on 06.07.17.
@@ -6,11 +6,12 @@ package Graph;
  *
  * Столбец таблицы кратчайших путей, хранящий расстояние и родительскую вершину.
  */
+// TODO: 7/9/2017 lombok this shit
 public class Column {
     private int distance;
     private int parent;
 
-    Column(int parent, int distance) {
+    public Column(int parent, int distance) {
         this.parent = parent;
         this.distance = distance;
     }
