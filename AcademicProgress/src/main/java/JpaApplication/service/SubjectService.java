@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface SubjectService {
 	String addSubject(Integer subjectId, Integer subjectNum, String subjectName);
-	void delete(int id);
-	Subject getByName(String name);
+	boolean delete(int id);
+	Subject getById(Integer id);
 	List<Subject> getAll();
 }

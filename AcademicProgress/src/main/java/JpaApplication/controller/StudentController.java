@@ -39,6 +39,32 @@ public class StudentController {
 		@PathVariable(value = "groupNum") Integer groupNum
 	){
 		String string = studentService.addStudent(studentId, facultyId, recordbookNum, fullName, groupNum);
-		return new ModelAndView("view/models/student", "resultObject", "Object was added " + string);
+		return new ModelAndView("view/models/student", "resultObject",
+			"Object was added " + string);
+	}
+
+	@RequestMapping(value = "deleteStudent/studentId/{studentId}", method = RequestMethod.GET)
+	public ModelAndView deleteStudent(@PathVariable(value = "studentId") Integer studentId){
+			boolean responce = studentService.delete(studentId);
+			if(responce){
+				return new ModelAndView("view/models/student", "resultObject",
+					"Student was deleted");
+			}
+			else{
+				return new ModelAndView("view/models/student", "resultObject",
+					"Student wasn't deleted");
+			}
+	}
+
+	@RequestMapping(value = "getById/studentId/{studentId}", method = RequestMethod.GET)
+	public ModelAndView getById(@PathVariable(value = "studentId") Integer studentId){
+		Student responce = studentService.getById(studentId);
+		if(responce != null) {
+			return new ModelAndView("view/models/student", "resultObject",
+				responce);
+		}else{
+			return new ModelAndView("view/models/student", "resultObject",
+				"No such student in db");
+		}
 	}
 }

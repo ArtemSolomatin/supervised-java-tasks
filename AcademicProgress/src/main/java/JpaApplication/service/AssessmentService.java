@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface AssessmentService {
 	String addAssessment(Integer assessmentId, Integer studentId, Integer subjectId, Integer semesterNum, Integer mark, String examinerSurname);
-	void delete(int id);
+	boolean delete(int id);
 	Assessment getById(Integer assessmentId);
 	List<Assessment> getAll();
 }

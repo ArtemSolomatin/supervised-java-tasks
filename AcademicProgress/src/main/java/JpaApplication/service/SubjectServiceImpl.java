@@ -39,13 +39,17 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public void delete(int id) {
-		subjectRepository.delete(id);
+	public boolean delete(int id) {
+		if(getById(id) == null){
+			return false;
+		}
+		subjectRepository.deleteBySubjectId(id);
+		return true;
 	}
 
 	@Override
-	public Subject getByName(String name) {
-		return subjectRepository.findByName(name);
+	public Subject getById(Integer id) {
+		return subjectRepository.findBySubjectId(id);
 	}
 
 	@Override

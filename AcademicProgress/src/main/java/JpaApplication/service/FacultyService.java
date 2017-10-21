@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface FacultyService {
 	String addFaculty(Integer facultyId, Integer facultyNum, String facultyName);
-	void delete(int id);
-	Faculty getByName(String name);
+	boolean delete(int id);
+	Faculty getById(int id);
 	List<Faculty> getAll();
 }

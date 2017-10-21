@@ -42,13 +42,17 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void delete(int id) {
-		studentRepository.delete(id);
+	public boolean delete(int id) {
+		if(getById(id) == null){
+			return false;
+		}
+		studentRepository.deleteByStudentId(id);
+		return true;
 	}
 
 	@Override
-	public Student getByName(String name) {
-		return studentRepository.findByName(name);
+	public Student getById(int studentId) {
+		return studentRepository.findByStudentId(studentId);
 	}
 
 	@Override

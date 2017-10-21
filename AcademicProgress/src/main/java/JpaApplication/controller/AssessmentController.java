@@ -1,6 +1,7 @@
 package JpaApplication.controller;
 
 import JpaApplication.entity.Assessment;
+import JpaApplication.entity.Faculty;
 import JpaApplication.service.AssessmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class AssessmentController {
 	}
 
 	@RequestMapping(value = "addAssessment/assessmentId/{assessmentId}/studentId/{studentId}/subjectId/{subjectId}/semesterNum/{semesterNum}/mark/{mark}/examinerSurname/{examinerSurname}", method = RequestMethod.GET)
-	//http://localhost:8090/addAssessment/assessmentId/1/studentId/2/subjectId/1/semesterNum/3/mark/6/examinerSurname/TestExaminer
+	//http://localhost:8090/addAssessment/assessmentId/0/studentId/1/subjectId/2/semesterNum/3/mark/6/examinerSurname/TestExaminer
 	public ModelAndView addStudent(
 		@PathVariable(value = "assessmentId") Integer assessmentId,
 		@PathVariable(value = "studentId") Integer studentId,
@@ -40,5 +41,30 @@ public class AssessmentController {
 	){
 		String string = assessmentService.addAssessment(assessmentId, studentId, subjectId, semesterNum, mark, examinerSurname);
 		return new ModelAndView("view/models/assessment", "resultObject", "Object was added " + string);
+	}
+
+	@RequestMapping(value = "deleteAssessment/assessmentId/{assessmentId}", method = RequestMethod.GET)
+	public ModelAndView deleteAssessment(@PathVariable(value = "assessmentId") Integer assessmentId){
+		boolean responce = assessmentService.delete(assessmentId);
+		if(responce){
+			return new ModelAndView("view/models/assessment", "resultObject",
+				"Assessment was deleted");
+		}
+		else{
+			return new ModelAndView("view/models/assessment", "resultObject",
+				"Assessment wasn't deleted");
+		}
+	}
+
+	@RequestMapping(value = "getById/assessmentId/{assessmentId}", method = RequestMethod.GET)
+	public ModelAndView getById(@PathVariable(value = "assessmentId") Integer assessmentId){
+		Assessment responce = assessmentService.getById(assessmentId);
+		if(responce != null) {
+			return new ModelAndView("view/models/assessment", "resultObject",
+				responce);
+		}else{
+			return new ModelAndView("view/models/assessment", "resultObject",
+				"No such assessment in db");
+		}
 	}
 }

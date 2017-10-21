@@ -1,6 +1,7 @@
 package JpaApplication.controller;
 
 import JpaApplication.entity.Faculty;
+import JpaApplication.entity.Student;
 import JpaApplication.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class FacultyController {
 	}
 
 	@RequestMapping(value = "addFaculty/facultyId/{facultyId}/facultyNum/{facultyNum}/facultyName/{facultyName}", method = RequestMethod.GET)
-	//http://localhost:8090/addFaculty/facultyId/4/facultyNum/6/facultyName/TestFaculty
+	//http://localhost:8090/addFaculty/facultyId/0/facultyNum/6/facultyName/TestFaculty
 	public ModelAndView addFaculty(
 		@PathVariable(value = "facultyId") Integer facultyId,
 		@PathVariable(value = "facultyNum") Integer facultyNum,
@@ -37,5 +38,30 @@ public class FacultyController {
 	){
 		String string = facultyService.addFaculty(facultyId, facultyNum, facultyName);
 		return new ModelAndView("view/models/faculty", "resultObject", "Object was added " + string);
+	}
+
+	@RequestMapping(value = "deleteFaculty/facultyId/{facultyId}", method = RequestMethod.GET)
+	public ModelAndView deleteFaculty(@PathVariable(value = "facultyId") Integer facultyId){
+		boolean responce = facultyService.delete(facultyId);
+		if(responce){
+			return new ModelAndView("view/models/faculty", "resultObject",
+				"Faculty was deleted");
+		}
+		else{
+			return new ModelAndView("view/models/faculty", "resultObject",
+				"Faculty wasn't deleted");
+		}
+	}
+
+	@RequestMapping(value = "getById/facultyId/{facultyId}", method = RequestMethod.GET)
+	public ModelAndView getById(@PathVariable(value = "facultyId") Integer facultyId){
+		Faculty responce = facultyService.getById(facultyId);
+		if(responce != null) {
+			return new ModelAndView("view/models/faculty", "resultObject",
+				responce);
+		}else{
+			return new ModelAndView("view/models/faculty", "resultObject",
+				"No such faculty in db");
+		}
 	}
 }

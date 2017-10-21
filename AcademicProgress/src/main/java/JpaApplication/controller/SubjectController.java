@@ -1,5 +1,6 @@
 package JpaApplication.controller;
 
+import JpaApplication.entity.Student;
 import JpaApplication.entity.Subject;
 import JpaApplication.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +30,38 @@ public class SubjectController {
 	}
 
 	@RequestMapping(value = "addSubject/subjectId/{subjectId}/subjectNum/{subjectNum}/subjectName/{subjectName}", method = RequestMethod.GET)
-	//http://localhost:8090/addSubject/subjectId/3/subjectNum/3/subjectName/TestSubject
-	public ModelAndView addStudent(
+	//http://localhost:8090/addSubject/subjectId/0/subjectNum/0/subjectName/TestSubject
+	public ModelAndView addSubject(
 		@PathVariable(value = "subjectId") Integer subjectId,
 		@PathVariable(value = "subjectNum") Integer subjectNum,
 		@PathVariable(value = "subjectName") String subjectName
-	){
-		String string = subjectService.addSubject(subjectId, subjectNum, subjectName);
-		return new ModelAndView("view/models/subject", "resultObject", "Object was added " + string);
+	) {
+		String responce = subjectService.addSubject(subjectId, subjectNum, subjectName);
+		return new ModelAndView("view/models/subject", "resultObject", "Object was added "
+			+ responce);
+	}
+
+	@RequestMapping(value = "deleteSubject/subjectId/{subjectId}", method = RequestMethod.GET)
+	public ModelAndView deleteSubject(@PathVariable(value = "subjectId") Integer subjectId){
+		boolean responce = subjectService.delete(subjectId);
+		if(responce){
+			return new ModelAndView("view/models/subject", "resultObject",
+					"Subject was deleted");
+		}else{
+			return new ModelAndView("view/models/subject", "resultObject",
+					"Subject wasn't deleted");
+		}
+	}
+
+	@RequestMapping(value = "getById/subjectId/{subjectId}", method = RequestMethod.GET)
+	public ModelAndView getById(@PathVariable(value = "subjectId") Integer subjectId){
+		Subject responce = subjectService.getById(subjectId);
+		if(responce != null) {
+			return new ModelAndView("view/models/subject", "resultObject",
+					responce);
+		}else{
+			return new ModelAndView("view/models/subject", "resultObject",
+					"No such subject in db");
+		}
 	}
 }
