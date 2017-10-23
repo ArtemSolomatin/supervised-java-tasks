@@ -23,7 +23,7 @@ CREATE TABLE student
     CONSTRAINT fk_faculty_id FOREIGN KEY (faculty_id) REFERENCES faculty (faculty_id)
 );
 
-CREATE TABLE assessments
+CREATE TABLE assessment
 (
     assessment_id serial PRIMARY KEY NOT NULL,
     student_id INTEGER NOT NULL,
@@ -41,4 +41,4 @@ Insert into faculty values(3, 3, 'FAKI');
 Insert into subject values(1, 1, 'Math');
 Insert into subject values(2, 2, 'IT');
 Insert into student values(1, 2, 1, 'Zippo Petr Alexeevich', 616);
-Insert into assessments values(1, 1, 1, 1, 7, 'Smilga');
+Insert into assessment values(1, 1, 1, 1, 7, 'Smilga');

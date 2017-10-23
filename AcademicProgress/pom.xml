@@ -24,22 +24,16 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <maven-compiler>3.5.1</maven-compiler>
         <jackson.version>1.9.10</jackson.version>
+        <spring-security.version>4.0.4.RELEASE</spring-security.version>
     </properties>
 
     <dependencies>
 <!-- Spring -->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-framework-bom</artifactId>-->
-            <!--<version>${spring-framework.version}</version>-->
-            <!--<type>pom</type>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring-framework.version}</version>
         </dependency>
-
 
 <!-- MVC, jsp and servlets -->
         <dependency>
@@ -70,7 +64,6 @@
             <scope>provided</scope>
         </dependency>
 
-
         <!-- Data -->
         <dependency>
             <groupId>postgresql</groupId>
@@ -91,6 +84,30 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.1.0.Final</version>
+        </dependency>
+
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency><!--To start using the security namespace in my application context-->
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency><!--Provides Spring Security’s JSP tag implementations.-->
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring-security.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency> <!--It includes security annotation: @RolesAllowed; @DenyAll, @RunAs, @PermitAll-->
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
         </dependency>
 
 <!--Testing-->
