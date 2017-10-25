@@ -26,7 +26,7 @@ public class StudentServiceImpl implements StudentService {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-//TODO Если добавлять уже существующий элемент, то бросается исключение, блок try/catch не помогает
+//FIXME Если добавлять уже существующий элемент, то бросается исключение, блок try/catch не помогает
 	@Override
 	public String addStudent(Integer studentId, Integer facultyId, Integer recordbookNum, String fullName, Integer groupNum) {
 		Query query = entityManager.createNativeQuery("INSERT INTO Student values (?, ?, ?, ?, ?)");

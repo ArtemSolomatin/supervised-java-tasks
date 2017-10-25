@@ -1,19 +1,19 @@
-package securityapplication.service;
+package JpaApplication.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import securityapplication.model.Role;
-import securityapplication.model.User;
-import securityapplication.repository.RoleRepository;
-import securityapplication.repository.UserRepository;
+import JpaApplication.entity.Role;
+import JpaApplication.entity.User;
+import JpaApplication.repository.RoleRepository;
+import JpaApplication.repository.UserRepository;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Artem Solomatin on 23.08.17.
- * Authorization
+ * Created by Artem Solomatin on 25.10.17.
+ * AcademicProgress
  *
  * Предоставляет услуги по регистрации учетной записи
  */
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findOne(1L));
+        roles.add(roleRepository.findOne(1L));   //по умолчанию role = user
         user.setRoles(roles);
         userRepository.save(user);
     }

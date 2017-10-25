@@ -10,7 +10,6 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!--TODO Без этого ошибка: юзернейм или пароль некорректны-->
     <tx:annotation-driven/>
 
     <jpa:repositories base-package="securityapplication.repository"/>

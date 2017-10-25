@@ -4,27 +4,27 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
-<head>
-    <!-- Bootstrap Core CSS -->
-    <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
-    <link href="${bootstrap}" rel="stylesheet" />
+    <head>
+        <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    </head>
 
-    <!-- Custom CSS -->
-    <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
-    <link href="${startertemplate}" rel="stylesheet" />
+    <body>
+    <div class="container">
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
 
-    <!-- jQuery -->
-    <spring:url value="/resources/js/jquery.js" var="jqueryjs"/>
-    <script src="${jqueryjs}"></script>
+            <h4>onclick="document.forms['logoutForm'].submit()">Logout</h4>
+        </c:if>
+    </div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <spring:url value="/resources/js/bootstrap.js" var="js"/>
-    <script src="${js}"></script>
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 
-<body>
-<jsp:doBody/>
 
-</body>
+    <jsp:doBody/>
+
+    </body>
 
 </html>

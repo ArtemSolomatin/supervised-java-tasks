@@ -24,11 +24,12 @@ public class AssessmentController {
 	AssessmentService assessmentService;
 
 	@RequestMapping(value = "getAllAssessments", method = RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody List<Assessment> getAllStudents(){
+	public @ResponseBody ModelAndView getAllStudents(){
 		List<Assessment> assessments = assessmentService.getAll();
-		return assessments;
+		return new ModelAndView("view/models/assessment", "resultObject", assessments);
 	}
 
+	//TODO почему requestMethod не POST?
 	@RequestMapping(value = "addAssessment/assessmentId/{assessmentId}/studentId/{studentId}/subjectId/{subjectId}/semesterNum/{semesterNum}/mark/{mark}/examinerSurname/{examinerSurname}", method = RequestMethod.GET)
 	//http://localhost:8090/addAssessment/assessmentId/0/studentId/1/subjectId/2/semesterNum/3/mark/6/examinerSurname/TestExaminer
 	public ModelAndView addStudent(
@@ -43,6 +44,7 @@ public class AssessmentController {
 		return new ModelAndView("view/models/assessment", "resultObject", "Object was added " + string);
 	}
 
+	//TODO почему requestMethod не POST?
 	@RequestMapping(value = "deleteAssessment/assessmentId/{assessmentId}", method = RequestMethod.GET)
 	public ModelAndView deleteAssessment(@PathVariable(value = "assessmentId") Integer assessmentId){
 		boolean responce = assessmentService.delete(assessmentId);

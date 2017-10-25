@@ -4,6 +4,7 @@ import JpaApplication.entity.Student;
 import JpaApplication.entity.Subject;
 import JpaApplication.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +24,13 @@ public class SubjectController {
 	@Autowired
 	SubjectService subjectService;
 
+	@Secured(value={"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "getAllSubjects", method = RequestMethod.GET, headers="Accept=application/json")
 	public @ResponseBody List<Subject> getAllSubjects(){
-		List<Subject> subjects = subjectService.getAll();
-		return subjects;
+		return subjectService.getAll();
 	}
 
+	@Secured(value={"ROLE_ADMIN"})
 	@RequestMapping(value = "addSubject/subjectId/{subjectId}/subjectNum/{subjectNum}/subjectName/{subjectName}", method = RequestMethod.GET)
 	//http://localhost:8090/addSubject/subjectId/0/subjectNum/0/subjectName/TestSubject
 	public ModelAndView addSubject(
@@ -36,15 +38,16 @@ public class SubjectController {
 		@PathVariable(value = "subjectNum") Integer subjectNum,
 		@PathVariable(value = "subjectName") String subjectName
 	) {
-		String responce = subjectService.addSubject(subjectId, subjectNum, subjectName);
+		String response = subjectService.addSubject(subjectId, subjectNum, subjectName);
 		return new ModelAndView("view/models/subject", "resultObject", "Object was added "
-			+ responce);
+			+ response);
 	}
 
+	@Secured(value={"ROLE_ADMIN"})
 	@RequestMapping(value = "deleteSubject/subjectId/{subjectId}", method = RequestMethod.GET)
 	public ModelAndView deleteSubject(@PathVariable(value = "subjectId") Integer subjectId){
-		boolean responce = subjectService.delete(subjectId);
-		if(responce){
+		boolean response = subjectService.delete(subjectId);
+		if(response){
 			return new ModelAndView("view/models/subject", "resultObject",
 					"Subject was deleted");
 		}else{
@@ -53,6 +56,7 @@ public class SubjectController {
 		}
 	}
 
+	@Secured(value={"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "getById/subjectId/{subjectId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "subjectId") Integer subjectId){
 		Subject responce = subjectService.getById(subjectId);
