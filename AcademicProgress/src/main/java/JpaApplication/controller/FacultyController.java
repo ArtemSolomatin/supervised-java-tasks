@@ -24,9 +24,9 @@ public class FacultyController {
 	FacultyService facultyService;
 
 	@RequestMapping(value = "getAllFaculties", method = RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody List<Faculty> getAllFaculties(){
+	public @ResponseBody ModelAndView getAllFaculties(){
 		List<Faculty> faculties = facultyService.getAll();
-		return faculties;
+		return new ModelAndView("view/models/faculty", "resultObject", faculties);
 	}
 
 	@RequestMapping(value = "addFaculty/facultyId/{facultyId}/facultyNum/{facultyNum}/facultyName/{facultyName}", method = RequestMethod.GET)

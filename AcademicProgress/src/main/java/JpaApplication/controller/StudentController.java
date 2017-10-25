@@ -24,9 +24,9 @@ public class StudentController {
 
 	@RequestMapping(value = "getAllStudents", method = RequestMethod.GET, headers="Accept=application/json")
 	public @ResponseBody
-	List<Student> getAllStudents(){
+	ModelAndView getAllStudents(){
 		List<Student> students = studentService.getAll();
-		return students;
+		return new ModelAndView("view/models/student", "resultObject", students);
 	}
 
 	@RequestMapping(value = "addStudent/studentId/{studentId}/facultyId/{facultyId}/recordbookNum/{recordbookNum}/fullName/{fullName}/groupNum/{groupNum}", method = RequestMethod.GET)

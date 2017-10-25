@@ -1,6 +1,5 @@
 package JpaApplication.controller;
 
-import JpaApplication.entity.Student;
 import JpaApplication.entity.Subject;
 import JpaApplication.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,10 @@ public class SubjectController {
 
 	@Secured(value={"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "getAllSubjects", method = RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody List<Subject> getAllSubjects(){
-		return subjectService.getAll();
+	public @ResponseBody
+	ModelAndView getAllSubjects(){
+		List<Subject> subjects = subjectService.getAll();
+		return new ModelAndView("view/models/subject", "resultObject", subjects);
 	}
 
 	@Secured(value={"ROLE_ADMIN"})
