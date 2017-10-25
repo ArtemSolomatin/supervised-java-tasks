@@ -25,6 +25,8 @@
         <maven-compiler>3.5.1</maven-compiler>
         <jackson.version>1.9.10</jackson.version>
         <spring-security.version>4.0.4.RELEASE</spring-security.version>
+        <hibernate-validator>5.1.0.Final</hibernate-validator>
+        <jackson-databind>2.7.5</jackson-databind>
     </properties>
 
     <dependencies>
@@ -83,7 +85,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.1.0.Final</version>
+            <version>${hibernate-validator}</version>
         </dependency>
 
         <!--Spring Security-->
@@ -132,7 +134,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.7.5</version>
+            <version>${jackson-databind}</version>
         </dependency>
     </dependencies>
 
@@ -155,5 +157,6 @@
                 <!--</configuration>-->
             </plugin>
         </plugins>
+            <finalName>academic-progress</finalName>
     </build>
 </project>
