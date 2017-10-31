@@ -18,6 +18,8 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean id="jacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
