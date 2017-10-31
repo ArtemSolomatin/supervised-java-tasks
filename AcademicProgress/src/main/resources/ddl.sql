@@ -35,6 +35,30 @@ CREATE TABLE assessment
     CONSTRAINT fk2_subject_id FOREIGN KEY (subject_id) REFERENCES subject (subject_id)
 );
 
+-- Table: users
+CREATE TABLE users (
+	id       SERIAL          NOT NULL PRIMARY KEY,
+	username VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL
+);
+
+-- Table: roles
+CREATE TABLE roles (
+	id   SERIAL          NOT NULL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL
+);
+
+-- Table for mapping user and roles: user_roles
+CREATE TABLE user_roles (
+	user_id INT NOT NULL,
+	role_id INT NOT NULL,
+
+	FOREIGN KEY (user_id) REFERENCES users (id),
+	FOREIGN KEY (role_id) REFERENCES roles (id),
+
+	UNIQUE (user_id, role_id)
+);
+
 Insert into faculty values(1, 1, 'FRTK');
 Insert into faculty values(2, 2, 'FIVT');
 Insert into faculty values(3, 3, 'FAKI');
@@ -42,3 +66,8 @@ Insert into subject values(1, 1, 'Math');
 Insert into subject values(2, 2, 'IT');
 Insert into student values(1, 2, 1, 'Zippo Petr Alexeevich', 616);
 Insert into assessment values(1, 1, 1, 1, 7, 'Smilga');
+
+INSERT INTO users VALUES (1, 'tester', '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG');
+INSERT INTO roles VALUES (1, 'ROLE_USER');
+INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
+INSERT INTO user_roles VALUES (1, 2);
