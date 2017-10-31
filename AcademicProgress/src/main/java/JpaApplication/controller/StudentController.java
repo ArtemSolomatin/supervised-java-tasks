@@ -24,9 +24,9 @@ public class StudentController {
 
 	@RequestMapping(value = "getAllStudents", method = RequestMethod.GET, headers="Accept=application/json")
 	public @ResponseBody
-	ModelAndView getAllStudents(){
+	List<Student> getAllStudents(){
 		List<Student> students = studentService.getAll();
-		return new ModelAndView("view/models/student", "resultObject", students);
+		return students;
 	}
 
 	@RequestMapping(value = "addStudent/studentId/{studentId}/facultyId/{facultyId}/recordbookNum/{recordbookNum}/fullName/{fullName}/groupNum/{groupNum}", method = RequestMethod.GET)
@@ -45,8 +45,8 @@ public class StudentController {
 
 	@RequestMapping(value = "deleteStudent/studentId/{studentId}", method = RequestMethod.GET)
 	public ModelAndView deleteStudent(@PathVariable(value = "studentId") Integer studentId){
-			boolean responce = studentService.delete(studentId);
-			if(responce){
+			boolean response = studentService.delete(studentId);
+			if(response){
 				return new ModelAndView("view/models/student", "resultObject",
 					"Student was deleted");
 			}
@@ -58,10 +58,10 @@ public class StudentController {
 
 	@RequestMapping(value = "getById/studentId/{studentId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "studentId") Integer studentId){
-		Student responce = studentService.getById(studentId);
-		if(responce != null) {
+		Student response = studentService.getById(studentId);
+		if(response != null) {
 			return new ModelAndView("view/models/student", "resultObject",
-				responce);
+				response);
 		}else{
 			return new ModelAndView("view/models/student", "resultObject",
 				"No such student in db");

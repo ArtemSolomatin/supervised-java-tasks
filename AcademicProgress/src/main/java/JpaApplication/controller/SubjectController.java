@@ -23,12 +23,11 @@ public class SubjectController {
 	@Autowired
 	SubjectService subjectService;
 
-	@Secured(value={"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "getAllSubjects", method = RequestMethod.GET, headers="Accept=application/json")
 	public @ResponseBody
-	ModelAndView getAllSubjects(){
+	List<Subject> getAllSubjects(){
 		List<Subject> subjects = subjectService.getAll();
-		return new ModelAndView("view/models/subject", "resultObject", subjects);
+		return subjects;
 	}
 
 	@Secured(value={"ROLE_ADMIN"})
@@ -60,10 +59,10 @@ public class SubjectController {
 	@Secured(value={"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "getById/subjectId/{subjectId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "subjectId") Integer subjectId){
-		Subject responce = subjectService.getById(subjectId);
-		if(responce != null) {
+		Subject response = subjectService.getById(subjectId);
+		if(response != null) {
 			return new ModelAndView("view/models/subject", "resultObject",
-					responce);
+					response);
 		}else{
 			return new ModelAndView("view/models/subject", "resultObject",
 					"No such subject in db");

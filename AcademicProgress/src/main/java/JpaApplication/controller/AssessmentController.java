@@ -24,9 +24,9 @@ public class AssessmentController {
 	AssessmentService assessmentService;
 
 	@RequestMapping(value = "getAllAssessments", method = RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody ModelAndView getAllStudents(){
+	public @ResponseBody List<Assessment> getAllStudents(){
 		List<Assessment> assessments = assessmentService.getAll();
-		return new ModelAndView("view/models/assessment", "resultObject", assessments);
+		return assessments;
 	}
 
 	//TODO почему requestMethod не POST?
@@ -47,8 +47,8 @@ public class AssessmentController {
 	//TODO почему requestMethod не POST?
 	@RequestMapping(value = "deleteAssessment/assessmentId/{assessmentId}", method = RequestMethod.GET)
 	public ModelAndView deleteAssessment(@PathVariable(value = "assessmentId") Integer assessmentId){
-		boolean responce = assessmentService.delete(assessmentId);
-		if(responce){
+		boolean response = assessmentService.delete(assessmentId);
+		if(response){
 			return new ModelAndView("view/models/assessment", "resultObject",
 				"Assessment was deleted");
 		}
@@ -60,10 +60,10 @@ public class AssessmentController {
 
 	@RequestMapping(value = "getById/assessmentId/{assessmentId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "assessmentId") Integer assessmentId){
-		Assessment responce = assessmentService.getById(assessmentId);
-		if(responce != null) {
+		Assessment response = assessmentService.getById(assessmentId);
+		if(response != null) {
 			return new ModelAndView("view/models/assessment", "resultObject",
-				responce);
+				response);
 		}else{
 			return new ModelAndView("view/models/assessment", "resultObject",
 				"No such assessment in db");

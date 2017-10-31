@@ -1,7 +1,6 @@
 package JpaApplication.controller;
 
 import JpaApplication.entity.Faculty;
-import JpaApplication.entity.Student;
 import JpaApplication.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +23,10 @@ public class FacultyController {
 	FacultyService facultyService;
 
 	@RequestMapping(value = "getAllFaculties", method = RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody ModelAndView getAllFaculties(){
+	public @ResponseBody
+	List<Faculty> getAllFaculties(){
 		List<Faculty> faculties = facultyService.getAll();
-		return new ModelAndView("view/models/faculty", "resultObject", faculties);
+		return faculties;
 	}
 
 	@RequestMapping(value = "addFaculty/facultyId/{facultyId}/facultyNum/{facultyNum}/facultyName/{facultyName}", method = RequestMethod.GET)
@@ -42,8 +42,8 @@ public class FacultyController {
 
 	@RequestMapping(value = "deleteFaculty/facultyId/{facultyId}", method = RequestMethod.GET)
 	public ModelAndView deleteFaculty(@PathVariable(value = "facultyId") Integer facultyId){
-		boolean responce = facultyService.delete(facultyId);
-		if(responce){
+		boolean response = facultyService.delete(facultyId);
+		if(response){
 			return new ModelAndView("view/models/faculty", "resultObject",
 				"Faculty was deleted");
 		}
@@ -55,10 +55,10 @@ public class FacultyController {
 
 	@RequestMapping(value = "getById/facultyId/{facultyId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "facultyId") Integer facultyId){
-		Faculty responce = facultyService.getById(facultyId);
-		if(responce != null) {
+		Faculty response = facultyService.getById(facultyId);
+		if(response != null) {
 			return new ModelAndView("view/models/faculty", "resultObject",
-				responce);
+				response);
 		}else{
 			return new ModelAndView("view/models/faculty", "resultObject",
 				"No such faculty in db");
