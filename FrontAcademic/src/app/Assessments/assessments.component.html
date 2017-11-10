@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<h2>This is assessments page</h2>
+
+<ul>
+  <li *ngFor="let assessment of assessments">
+    <table style="width:100%">
+      <tr>
+        <th>id</th>
+        <th>mark</th>
+        <th>examiner</th>
+      </tr>
+      <tr>
+        <td>{{assessment.assessmentId}}</td>
+        <td>{{assessment.mark}}</td>
+        <td>{{assessment.examinerSurname}}</td>
+      </tr>
+    </table>
+  </li>
+</ul>
+
+<button (click)="goBack()">Back</button>
+<button (click)="findAssessments()">findAssessments</button>
+
+<nav>
+  <a routerLink="/admin/addAssessment">Add assessment</a>
+  <a routerLink="/admin/removeAssessment">Remove Assessment</a>
+</nav>
+
+

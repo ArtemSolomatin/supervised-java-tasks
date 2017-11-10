@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en">
 
-<h2>This is students page</h2>
+<h2>This is subjects page</h2>
 
 <ul>
-  <li *ngFor="let student of students">
+  <li *ngFor="let subject of subjects">
     <table style="width:100%">
       <tr>
         <th>id</th>
         <th>name</th>
       </tr>
       <tr>
-        <td>{{student.studentId}}</td>
-        <td>{{student.fullName}}</td>
+        <td>{{subject.subjectId}}</td>
+        <td>{{subject.subjectName}}</td>
       </tr>
     </table>
   </li>
 </ul>
 
+
 <button (click)="goBack()">Back</button>
-<button (click)="findStudent()">findStudent</button>

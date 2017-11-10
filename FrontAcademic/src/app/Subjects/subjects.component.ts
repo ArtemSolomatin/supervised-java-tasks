@@ -4,32 +4,28 @@ import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: [ './students.component.css' ]
+  selector: 'app-subjects',
+  templateUrl: './subjects.component.html',
+  styleUrls: [ './subjects.component.css' ]
 })
-export class StudentsComponent implements OnInit {
+export class SubjectsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private http: HttpClient
   ) {}
 
-  students: any;
+  subjects: any;
 
   ngOnInit(): void {
     console.log('Init');
-    this.http.get('http://localhost:8090/getAllStudents').subscribe(data => {
+    this.http.get('http://localhost:8090/getAllSubjects').subscribe(data => {
       console.log(data);
-      this.students = data;
+      this.subjects = data;
     });
   }
 
   goBack(): void {
     this.location.back();
-  }
-
-  findStudent(): void {
-// найти студента по имени
   }
 }
