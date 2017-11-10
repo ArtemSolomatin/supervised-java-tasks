@@ -12,7 +12,7 @@
         <!-- для локального развертывания -->
         <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <intercept-url pattern="/getAll*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <!--<intercept-url pattern="/getAll*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>-->
         <intercept-url pattern="/getById/**" access="hasAnyRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/add*/**" access="hasAnyRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/delete*/**" access="hasAnyRole('ROLE_ADMIN')"/>

@@ -10,7 +10,8 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
 
     <!-- ViewResolver bean config for mapping strings to jsp views. ViewResolver — используется при возврате модели из спринг бина. -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -36,6 +37,8 @@
             </list>
         </property>
     </bean>
+
+
 
     <!-- context:component-scan This tag will scan @Component, @Repository, @Service, @Controller
          and also resolves @Autowired and @Qualifier -->
