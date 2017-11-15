@@ -11,6 +11,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags" %>
 
+<%--<% response.setHeader("Access-Control-Allow-Origin", "*"); %>--%>
 <page:template>
     <jsp:body>
         <c:url value="/addStudent/studentId/newStudentId/facultyId/newFacultyId/recordbookNum/newRecordbookNum/fullName/newFullName/groupNum/newGroupNum" var="addStudent" />

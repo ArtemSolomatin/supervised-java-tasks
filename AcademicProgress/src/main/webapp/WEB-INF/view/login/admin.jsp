@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<% response.setHeader("X-Frame-Options", "ALLOW-FROM http://localhost:4200");%>
     <div class="container">
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <form id="logoutForm" method="POST" action="${contextPath}/logout">

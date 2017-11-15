@@ -18,6 +18,7 @@
 </head>
 
 <body>
+<% response.setHeader("X-Frame-Options", "ALLOW-FROM http://localhost:4200");%>
 
 <div class="container">
 
