@@ -13,10 +13,10 @@ input {
 button {
   margin-top: 20px;
   font-family: Arial;
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  background-color: #b3b4ce;
+  border: 20px;
+  padding: 15px 25px;
+  border-radius: 30px;
   cursor: pointer; cursor: hand;
 }
 button:hover {
