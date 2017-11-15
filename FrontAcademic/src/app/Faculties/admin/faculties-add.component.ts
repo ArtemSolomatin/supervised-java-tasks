@@ -23,7 +23,7 @@ export class FacultiesAddComponent {
   facultyNum: string;
   facultyName: string;
 
-  add(): void {
+  addFaculty(): void {
     this.http.get(`http://localhost:8090/addFaculty?facultyId=` + this.facultyId +
       `&facultyNum=` + this.facultyNum + `&facultyName=` + this.facultyName).subscribe(data => {
       console.log(data);

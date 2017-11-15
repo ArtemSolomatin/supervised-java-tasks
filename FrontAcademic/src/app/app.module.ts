@@ -16,6 +16,10 @@ import {FormsModule} from '@angular/forms';
 import {AssessmentsAddComponent} from './Assessments/admin/assessments-add.component';
 import {StudentsAddComponent} from './Students/admin/students-add.component';
 import {SubjectsAddComponent} from './Subjects/admin/subjects-add.component';
+import {AssessmentsRemoveComponent} from './Assessments/admin/assessments-remove.component';
+import {FacultiesRemoveComponent} from './Faculties/admin/faculties-remove.component';
+import {StudentsRemoveComponent} from './Students/admin/students-remove.component';
+import {SubjectsRemoveComponent} from './Subjects/admin/subjects-remove.component';
 
 
 @NgModule({
@@ -23,12 +27,16 @@ import {SubjectsAddComponent} from './Subjects/admin/subjects-add.component';
     AppComponent,
     AssessmentsComponent,
     AssessmentsAddComponent,
+    AssessmentsRemoveComponent,
     FacultiesComponent,
     FacultiesAddComponent,
+    FacultiesRemoveComponent,
     StudentsComponent,
     StudentsAddComponent,
+    StudentsRemoveComponent,
     SubjectsComponent,
     SubjectsAddComponent,
+    SubjectsRemoveComponent,
     StartPageComponent,
   ],
   imports: [
