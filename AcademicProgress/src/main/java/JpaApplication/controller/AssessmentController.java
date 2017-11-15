@@ -31,8 +31,8 @@ public class AssessmentController {
 	}
 
 	//TODO почему requestMethod не POST?
-	@RequestMapping(value = "addAssessment/assessmentId/{assessmentId}/studentId/{studentId}/subjectId/{subjectId}/semesterNum/{semesterNum}/mark/{mark}/examinerSurname/{examinerSurname}", method = RequestMethod.GET)
-	//http://localhost:8090/addAssessment/assessmentId/0/studentId/1/subjectId/2/semesterNum/3/mark/6/examinerSurname/TestExaminer
+	@RequestMapping(value = "addAssessment?assessmentId={assessmentId}&studentId={studentId}&subjectId={subjectId}&semesterNum={semesterNum}&mark={mark}&examinerSurname={examinerSurname}", method = RequestMethod.GET)
+	//http://localhost:8090/addAssessment?assessmentId=0&studentId=1&subjectId=2&semesterNum=3&mark=6&examinerSurname=TestExaminer
 	public ModelAndView addStudent(
 		@PathVariable(value = "assessmentId") Integer assessmentId,
 		@PathVariable(value = "studentId") Integer studentId,
@@ -48,7 +48,7 @@ public class AssessmentController {
 	}
 
 	//TODO почему requestMethod не POST?
-	@RequestMapping(value = "deleteAssessment/assessmentId/{assessmentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteAssessment?assessmentId={assessmentId}", method = RequestMethod.GET)
 	public ModelAndView deleteAssessment(@PathVariable(value = "assessmentId") Integer assessmentId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = assessmentService.delete(assessmentId);
@@ -62,7 +62,7 @@ public class AssessmentController {
 		}
 	}
 
-	@RequestMapping(value = "getById/assessmentId/{assessmentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getById?assessmentId={assessmentId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "assessmentId") Integer assessmentId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Assessment res = assessmentService.getById(assessmentId);

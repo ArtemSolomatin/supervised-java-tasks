@@ -33,8 +33,8 @@ public class SubjectController {
 	}
 
 	@Secured(value={"ROLE_ADMIN"})
-	@RequestMapping(value = "addSubject/subjectId/{subjectId}/subjectNum/{subjectNum}/subjectName/{subjectName}", method = RequestMethod.GET)
-	//http://localhost:8090/addSubject/subjectId/0/subjectNum/0/subjectName/TestSubject
+	@RequestMapping(value = "addSubject?subjectId={subjectId}&subjectNum={subjectNum}&subjectName={subjectName}", method = RequestMethod.GET)
+	//http://localhost:8090/addSubject?subjectId=0&subjectNum=0&subjectName=TestSubject
 	public ModelAndView addSubject(
 		@PathVariable(value = "subjectId") Integer subjectId,
 		@PathVariable(value = "subjectNum") Integer subjectNum,
@@ -48,7 +48,7 @@ public class SubjectController {
 	}
 
 	@Secured(value={"ROLE_ADMIN"})
-	@RequestMapping(value = "deleteSubject/subjectId/{subjectId}", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteSubject?subjectId={subjectId}", method = RequestMethod.GET)
 	public ModelAndView deleteSubject(@PathVariable(value = "subjectId") Integer subjectId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = subjectService.delete(subjectId);
@@ -62,7 +62,7 @@ public class SubjectController {
 	}
 
 	@Secured(value={"ROLE_ADMIN", "ROLE_USER"})
-	@RequestMapping(value = "getById/subjectId/{subjectId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getById?subjectId={subjectId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "subjectId") Integer subjectId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Subject res = subjectService.getById(subjectId);

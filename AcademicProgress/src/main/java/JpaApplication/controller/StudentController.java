@@ -20,7 +20,6 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
-	@CrossOrigin
 	@RequestMapping(value = "getAllStudents", method = RequestMethod.GET, headers="Accept=application/json")
 	public @ResponseBody
 	List<Student> getAllStudents(HttpServletResponse response){
@@ -29,8 +28,8 @@ public class StudentController {
 		return students;
 	}
 
-	@RequestMapping(value = "addStudent/studentId/{studentId}/facultyId/{facultyId}/recordbookNum/{recordbookNum}/fullName/{fullName}/groupNum/{groupNum}", method = RequestMethod.GET)
-	//http://localhost:8090/addStudent/studentId/0/facultyId/2/recordbookNum/0/fullName/TestStudent/groupNum/533
+	@RequestMapping(value = "addStudent?studentId={studentId}&facultyId={facultyId}&recordbookNum={recordbookNum}&fullName={fullName}&groupNum={groupNum}", method = RequestMethod.GET)
+	//http://localhost:8090/addStudent?studentId=0&facultyId=2&recordbookNum=0&fullName=TestStudent&groupNum=533
 	public ModelAndView addStudent(
 		@PathVariable(value = "studentId") Integer studentId,
 		@PathVariable(value = "facultyId") Integer facultyId,
@@ -45,7 +44,7 @@ public class StudentController {
 			"Object was added " + string);
 	}
 
-	@RequestMapping(value = "deleteStudent/studentId/{studentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteStudent?studentId={studentId}", method = RequestMethod.GET)
 	public ModelAndView deleteStudent(@PathVariable(value = "studentId") Integer studentId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = studentService.delete(studentId);
@@ -59,7 +58,7 @@ public class StudentController {
 		}
 	}
 
-	@RequestMapping(value = "getById/studentId/{studentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getById?studentId={studentId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "studentId") Integer studentId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Student res = studentService.getById(studentId);

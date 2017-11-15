@@ -31,8 +31,8 @@ public class FacultyController {
 		return faculties;
 	}
 
-	@RequestMapping(value = "addFaculty/facultyId/{facultyId}/facultyNum/{facultyNum}/facultyName/{facultyName}", method = RequestMethod.GET)
-	//http://localhost:8090/addFaculty/facultyId/0/facultyNum/6/facultyName/TestFaculty
+	@RequestMapping(value = "addFaculty?facultyId={facultyId}&facultyNum={facultyNum}&facultyName={facultyName}", method = RequestMethod.GET)
+	//http://localhost:8090/addFaculty?facultyId=0&facultyNum=6&facultyName=TestFaculty
 	public ModelAndView addFaculty(
 		@PathVariable(value = "facultyId") Integer facultyId,
 		@PathVariable(value = "facultyNum") Integer facultyNum,
@@ -44,7 +44,7 @@ public class FacultyController {
 		return new ModelAndView("view/models/faculty", "resultObject", "Object was added " + string);
 	}
 
-	@RequestMapping(value = "deleteFaculty/facultyId/{facultyId}", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteFaculty?facultyId={facultyId}", method = RequestMethod.GET)
 	public ModelAndView deleteFaculty(@PathVariable(value = "facultyId") Integer facultyId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = facultyService.delete(facultyId);
@@ -58,7 +58,7 @@ public class FacultyController {
 		}
 	}
 
-	@RequestMapping(value = "getById/facultyId/{facultyId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getById?facultyId={facultyId}", method = RequestMethod.GET)
 	public ModelAndView getById(@PathVariable(value = "facultyId") Integer facultyId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Faculty res = facultyService.getById(facultyId);
