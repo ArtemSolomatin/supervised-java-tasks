@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -30,26 +31,24 @@ public class AssessmentController {
 		return assessments;
 	}
 
-	//TODO почему requestMethod не POST?
 	@RequestMapping(value = "addAssessment?assessmentId={assessmentId}&studentId={studentId}&subjectId={subjectId}&semesterNum={semesterNum}&mark={mark}&examinerSurname={examinerSurname}", method = RequestMethod.GET)
 	//http://localhost:8090/addAssessment?assessmentId=0&studentId=1&subjectId=2&semesterNum=3&mark=6&examinerSurname=TestExaminer
-	public ModelAndView addStudent(
-		@PathVariable(value = "assessmentId") Integer assessmentId,
-		@PathVariable(value = "studentId") Integer studentId,
-		@PathVariable(value = "subjectId") Integer subjectId,
-		@PathVariable(value = "semesterNum") Integer semesterNum,
-		@PathVariable(value = "mark") Integer mark,
-		@PathVariable(value = "examinerSurname") String examinerSurname,
-		HttpServletResponse response
+	public ModelAndView addStudent(HttpServletResponse response, HttpServletRequest request
 	){
+		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
+		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
+		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
+		Integer semesterNum = Integer.parseInt(request.getParameter("semesterNum"));
+		Integer mark = Integer.parseInt(request.getParameter("mark"));
+		String examinerSurname = request.getParameter("examinerSurname");
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String string = assessmentService.addAssessment(assessmentId, studentId, subjectId, semesterNum, mark, examinerSurname);
 		return new ModelAndView("view/models/assessment", "resultObject", "Object was added " + string);
 	}
 
-	//TODO почему requestMethod не POST?
 	@RequestMapping(value = "deleteAssessment?assessmentId={assessmentId}", method = RequestMethod.GET)
-	public ModelAndView deleteAssessment(@PathVariable(value = "assessmentId") Integer assessmentId, HttpServletResponse response){
+	public ModelAndView deleteAssessment(HttpServletResponse response, HttpServletRequest request){
+		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = assessmentService.delete(assessmentId);
 		if(res){
@@ -63,7 +62,8 @@ public class AssessmentController {
 	}
 
 	@RequestMapping(value = "getById?assessmentId={assessmentId}", method = RequestMethod.GET)
-	public ModelAndView getById(@PathVariable(value = "assessmentId") Integer assessmentId, HttpServletResponse response){
+	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
+		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Assessment res = assessmentService.getById(assessmentId);
 		if(res != null) {

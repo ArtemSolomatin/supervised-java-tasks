@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -31,21 +32,21 @@ public class FacultyController {
 		return faculties;
 	}
 
-	@RequestMapping(value = "addFaculty?facultyId={facultyId}&facultyNum={facultyNum}&facultyName={facultyName}", method = RequestMethod.GET)
+	@RequestMapping(value = "addFaculty", method = RequestMethod.GET)
 	//http://localhost:8090/addFaculty?facultyId=0&facultyNum=6&facultyName=TestFaculty
-	public ModelAndView addFaculty(
-		@PathVariable(value = "facultyId") Integer facultyId,
-		@PathVariable(value = "facultyNum") Integer facultyNum,
-		@PathVariable(value = "facultyName") String facultyName,
-		HttpServletResponse response
-	){
+	public ModelAndView addFaculty(HttpServletResponse response, HttpServletRequest request){
+		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
+		Integer facultyNum = Integer.parseInt(request.getParameter("facultyNum"));
+		String facultyName = request.getParameter("facultyName");
 		response.setHeader("Access-Control-Allow-Origin", "*");
+
 		String string = facultyService.addFaculty(facultyId, facultyNum, facultyName);
 		return new ModelAndView("view/models/faculty", "resultObject", "Object was added " + string);
 	}
 
 	@RequestMapping(value = "deleteFaculty?facultyId={facultyId}", method = RequestMethod.GET)
-	public ModelAndView deleteFaculty(@PathVariable(value = "facultyId") Integer facultyId, HttpServletResponse response){
+	public ModelAndView deleteFaculty(HttpServletResponse response, HttpServletRequest request){
+		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = facultyService.delete(facultyId);
 		if(res){
@@ -59,7 +60,8 @@ public class FacultyController {
 	}
 
 	@RequestMapping(value = "getById?facultyId={facultyId}", method = RequestMethod.GET)
-	public ModelAndView getById(@PathVariable(value = "facultyId") Integer facultyId, HttpServletResponse response){
+	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
+		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Faculty res = facultyService.getById(facultyId);
 		if(res != null) {

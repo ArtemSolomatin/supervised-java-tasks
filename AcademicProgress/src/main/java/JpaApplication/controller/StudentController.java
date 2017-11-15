@@ -1,12 +1,14 @@
 package JpaApplication.controller;
 
 import JpaApplication.entity.Student;
+import JpaApplication.entity.Subject;
 import JpaApplication.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -30,14 +32,12 @@ public class StudentController {
 
 	@RequestMapping(value = "addStudent?studentId={studentId}&facultyId={facultyId}&recordbookNum={recordbookNum}&fullName={fullName}&groupNum={groupNum}", method = RequestMethod.GET)
 	//http://localhost:8090/addStudent?studentId=0&facultyId=2&recordbookNum=0&fullName=TestStudent&groupNum=533
-	public ModelAndView addStudent(
-		@PathVariable(value = "studentId") Integer studentId,
-		@PathVariable(value = "facultyId") Integer facultyId,
-		@PathVariable(value = "recordbookNum") Integer recordbookNum,
-		@PathVariable(value = "fullName") String fullName,
-		@PathVariable(value = "groupNum") Integer groupNum,
-		HttpServletResponse response
-	){
+	public ModelAndView addStudent(HttpServletResponse response, HttpServletRequest request){
+		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
+		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
+		Integer recordbookNum = Integer.parseInt(request.getParameter("recordbookNum"));
+		String fullName = request.getParameter("fullName");
+		Integer groupNum = Integer.parseInt(request.getParameter("groupNum"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String string = studentService.addStudent(studentId, facultyId, recordbookNum, fullName, groupNum);
 		return new ModelAndView("view/models/student", "resultObject",
@@ -45,7 +45,8 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "deleteStudent?studentId={studentId}", method = RequestMethod.GET)
-	public ModelAndView deleteStudent(@PathVariable(value = "studentId") Integer studentId, HttpServletResponse response){
+	public ModelAndView deleteStudent(HttpServletResponse response, HttpServletRequest request){
+		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = studentService.delete(studentId);
 		if(res){
@@ -59,7 +60,8 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "getById?studentId={studentId}", method = RequestMethod.GET)
-	public ModelAndView getById(@PathVariable(value = "studentId") Integer studentId, HttpServletResponse response){
+	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
+		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Student res = studentService.getById(studentId);
 		if(res != null) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -32,22 +33,18 @@ public class SubjectController {
 		return subjects;
 	}
 
-	@Secured(value={"ROLE_ADMIN"})
 	@RequestMapping(value = "addSubject?subjectId={subjectId}&subjectNum={subjectNum}&subjectName={subjectName}", method = RequestMethod.GET)
 	//http://localhost:8090/addSubject?subjectId=0&subjectNum=0&subjectName=TestSubject
-	public ModelAndView addSubject(
-		@PathVariable(value = "subjectId") Integer subjectId,
-		@PathVariable(value = "subjectNum") Integer subjectNum,
-		@PathVariable(value = "subjectName") String subjectName,
-		HttpServletResponse response
-	) {
+	public ModelAndView addSubject(HttpServletResponse response, HttpServletRequest request){
+		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
+		Integer subjectNum = Integer.parseInt(request.getParameter("subjectNum"));
+		String subjectName = request.getParameter("subjectName");
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String res = subjectService.addSubject(subjectId, subjectNum, subjectName);
 		return new ModelAndView("view/models/subject", "resultObject", "Object was added "
 			+ res);
 	}
 
-	@Secured(value={"ROLE_ADMIN"})
 	@RequestMapping(value = "deleteSubject?subjectId={subjectId}", method = RequestMethod.GET)
 	public ModelAndView deleteSubject(@PathVariable(value = "subjectId") Integer subjectId, HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -61,9 +58,9 @@ public class SubjectController {
 		}
 	}
 
-	@Secured(value={"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping(value = "getById?subjectId={subjectId}", method = RequestMethod.GET)
-	public ModelAndView getById(@PathVariable(value = "subjectId") Integer subjectId, HttpServletResponse response){
+	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
+		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Subject res = subjectService.getById(subjectId);
 		if(res != null) {
