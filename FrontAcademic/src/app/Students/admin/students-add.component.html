@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<h2>This is faculty adding page</h2>
+
+<div>
+  <label>student id:
+    <input [(ngModel)]="studentId" />
+  </label>
+</div>
+<div>
+  <label>faculty id:
+    <input [(ngModel)]="facultyId" />
+  </label>
+</div>
+<div>
+  <label>recordbook number:
+    <input [(ngModel)]="recordbookNum" />
+  </label>
+</div>
+<div>
+  <label>full name:
+    <input [(ngModel)]="fullName" />
+  </label>
+</div>
+<div>
+  <label>group name:
+    <input [(ngModel)]="groupName" />
+  </label>
+</div>
+
+<button (click)="addStudent();">add</button>
+<button (click)="goBack()">Back</button>

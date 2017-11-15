@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<h3>Hello</h3>
+
+<div class="container">
+
+  <form method="POST" action="http://localhost:8090/login" class="form-signin">
+    <h2 class="form-heading">Log in</h2>
+
+    <div class="form-group ${error != null ? 'has-error' : ''}">
+      <input name="username" type="text" class="form-control" placeholder="Username"
+             autofocus="true"/>
+      <input name="password" type="password" class="form-control" placeholder="Password"/>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+    </div>
+
+  </form>
+
+  <form id="logoutForm" method="POST" action="http://localhost:8090/logout">
+    <button type="submit">Log out</button>
+  </form>
+
+
+</div>
+

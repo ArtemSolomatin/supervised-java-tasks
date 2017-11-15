@@ -4,8 +4,8 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-start-page',
-  templateUrl: './students.component.html',
-  styleUrls: [ './students.component.css' ]
+  templateUrl: './start-page.component.html',
+  styleUrls: [ './start-page.component.css' ]
 })
 export class StartPageComponent implements OnInit {
   constructor(

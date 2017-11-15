@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<h2>This is faculty adding page</h2>
+
+<div>
+  <label>faculty id:
+    <input [(ngModel)]="facultyId" />
+  </label>
+</div>
+<div>
+  <label>faculty num:
+    <input [(ngModel)]="facultyNum" />
+  </label>
+</div>
+<div>
+  <label>faculty name:
+    <input [(ngModel)]="facultyName" />
+  </label>
+</div>
+
+
+<button (click)="add();">add</button>
+<button (click)="goBack()">Back</button>

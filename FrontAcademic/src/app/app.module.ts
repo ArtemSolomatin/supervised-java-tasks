@@ -11,22 +11,32 @@ import {FacultiesComponent} from './Faculties/faculties.component';
 import {SubjectsComponent} from './Subjects/subjects.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import {FacultiesAddComponent} from './Faculties/admin/faculties-add.component';
+import {FormsModule} from '@angular/forms';
+import {AssessmentsAddComponent} from './Assessments/admin/assessments-add.component';
+import {StudentsAddComponent} from './Students/admin/students-add.component';
+import {SubjectsAddComponent} from './Subjects/admin/subjects-add.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AssessmentsComponent,
+    AssessmentsAddComponent,
     FacultiesComponent,
+    FacultiesAddComponent,
     StudentsComponent,
+    StudentsAddComponent,
     SubjectsComponent,
+    SubjectsAddComponent,
     StartPageComponent,
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
