@@ -29,6 +29,9 @@ export class FacultiesAddComponent {
       console.log(data);
       this.faculties = data;
     });
+    this.facultyId = '';
+    this.facultyNum = '';
+    this.facultyName = '';
   }
 
   goBack(): void {

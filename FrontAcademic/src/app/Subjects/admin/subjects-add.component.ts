@@ -28,6 +28,9 @@ export class SubjectsAddComponent {
       console.log(data);
       this.subjects = data;
     });
+    this.subjectId = '';
+    this.subjectNum = '';
+    this.subjectName = '';
   }
 
   goBack(): void {

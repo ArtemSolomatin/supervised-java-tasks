@@ -25,6 +25,7 @@ export class SubjectsRemoveComponent {
         console.log(data);
         this.subjects = data;
       });
+    this.subjectId = '';
   }
 
   goBack(): void {

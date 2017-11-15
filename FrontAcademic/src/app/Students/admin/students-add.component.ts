@@ -31,6 +31,11 @@ export class StudentsAddComponent {
       console.log(data);
       this.students = data;
     });
+    this.studentId = '';
+    this.facultyId = '';
+    this.recordbookNum = '';
+    this.fullName = '';
+    this.groupNum = '';
   }
 
   goBack(): void {

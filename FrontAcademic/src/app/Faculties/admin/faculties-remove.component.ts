@@ -21,11 +21,12 @@ export class FacultiesRemoveComponent {
 
 // TODO не должно быть в коде localhost 8090, нужна какая-нибудь строка в другом файле, которую можно подставлять
   removeFaculty(): void {
-    this.http.get(`http://localhost:8090/deleteFaculty?studentId=` + this.facultyId)
+    this.http.get(`http://localhost:8090/deleteFaculty?facultyId=` + this.facultyId)
       .subscribe(data => {
         console.log(data);
         this.faculties = data;
       });
+    this.facultyId = '';
   }
 
   goBack(): void {

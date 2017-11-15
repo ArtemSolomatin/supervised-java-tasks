@@ -26,6 +26,7 @@ export class AssessmentsRemoveComponent {
         console.log(data);
       this.assessments = data;
     });
+    this.assessmentId = '';
   }
 
   goBack(): void {

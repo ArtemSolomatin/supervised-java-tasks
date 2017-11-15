@@ -32,6 +32,12 @@ export class AssessmentsAddComponent {
       console.log(data);
       this.assessments = data;
     });
+    this.assessmentId = '';
+    this.studentId = '';
+    this.subjectId = '';
+    this.semesterNum = '';
+    this.mark = '';
+    this.examinerSurname = '';
   }
 
   goBack(): void {

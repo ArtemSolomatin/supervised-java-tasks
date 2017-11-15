@@ -25,6 +25,7 @@ export class StudentsRemoveComponent {
         console.log(data);
         this.students = data;
       });
+    this.studentId = '';
   }
 
   goBack(): void {
