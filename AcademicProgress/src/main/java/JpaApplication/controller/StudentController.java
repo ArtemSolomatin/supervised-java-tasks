@@ -30,7 +30,7 @@ public class StudentController {
 		return students;
 	}
 
-	@RequestMapping(value = "addStudent?studentId={studentId}&facultyId={facultyId}&recordbookNum={recordbookNum}&fullName={fullName}&groupNum={groupNum}", method = RequestMethod.GET)
+	@RequestMapping(value = "addStudent", method = RequestMethod.GET)
 	//http://localhost:8090/addStudent?studentId=0&facultyId=2&recordbookNum=0&fullName=TestStudent&groupNum=533
 	public ModelAndView addStudent(HttpServletResponse response, HttpServletRequest request){
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
@@ -44,7 +44,7 @@ public class StudentController {
 			"Object was added " + string);
 	}
 
-	@RequestMapping(value = "deleteStudent?studentId={studentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteStudent", method = RequestMethod.GET)
 	public ModelAndView deleteStudent(HttpServletResponse response, HttpServletRequest request){
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -59,7 +59,7 @@ public class StudentController {
 		}
 	}
 
-	@RequestMapping(value = "getById?studentId={studentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getStudentById", method = RequestMethod.GET)
 	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");

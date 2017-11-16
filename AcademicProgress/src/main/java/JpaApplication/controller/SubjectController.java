@@ -33,7 +33,7 @@ public class SubjectController {
 		return subjects;
 	}
 
-	@RequestMapping(value = "addSubject?subjectId={subjectId}&subjectNum={subjectNum}&subjectName={subjectName}", method = RequestMethod.GET)
+	@RequestMapping(value = "addSubject", method = RequestMethod.GET)
 	//http://localhost:8090/addSubject?subjectId=0&subjectNum=0&subjectName=TestSubject
 	public ModelAndView addSubject(HttpServletResponse response, HttpServletRequest request){
 		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
@@ -45,8 +45,9 @@ public class SubjectController {
 			+ res);
 	}
 
-	@RequestMapping(value = "deleteSubject?subjectId={subjectId}", method = RequestMethod.GET)
-	public ModelAndView deleteSubject(@PathVariable(value = "subjectId") Integer subjectId, HttpServletResponse response){
+	@RequestMapping(value = "deleteSubject", method = RequestMethod.GET)
+	public ModelAndView deleteSubject(HttpServletResponse response, HttpServletRequest request){
+		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		boolean res = subjectService.delete(subjectId);
 		if(res){
@@ -58,7 +59,7 @@ public class SubjectController {
 		}
 	}
 
-	@RequestMapping(value = "getById?subjectId={subjectId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getSubjectById", method = RequestMethod.GET)
 	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
 		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");

@@ -44,7 +44,7 @@ public class FacultyController {
 		return new ModelAndView("view/models/faculty", "resultObject", "Object was added " + string);
 	}
 
-	@RequestMapping(value = "deleteFaculty?facultyId={facultyId}", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteFaculty", method = RequestMethod.GET)
 	public ModelAndView deleteFaculty(HttpServletResponse response, HttpServletRequest request){
 		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -59,7 +59,7 @@ public class FacultyController {
 		}
 	}
 
-	@RequestMapping(value = "getById?facultyId={facultyId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getFacultyById", method = RequestMethod.GET)
 	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
 		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");

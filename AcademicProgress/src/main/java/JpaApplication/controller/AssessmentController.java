@@ -31,7 +31,7 @@ public class AssessmentController {
 		return assessments;
 	}
 
-	@RequestMapping(value = "addAssessment?assessmentId={assessmentId}&studentId={studentId}&subjectId={subjectId}&semesterNum={semesterNum}&mark={mark}&examinerSurname={examinerSurname}", method = RequestMethod.GET)
+	@RequestMapping(value = "addAssessment", method = RequestMethod.GET)
 	//http://localhost:8090/addAssessment?assessmentId=0&studentId=1&subjectId=2&semesterNum=3&mark=6&examinerSurname=TestExaminer
 	public ModelAndView addStudent(HttpServletResponse response, HttpServletRequest request
 	){
@@ -46,7 +46,7 @@ public class AssessmentController {
 		return new ModelAndView("view/models/assessment", "resultObject", "Object was added " + string);
 	}
 
-	@RequestMapping(value = "deleteAssessment?assessmentId={assessmentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteAssessment", method = RequestMethod.GET)
 	public ModelAndView deleteAssessment(HttpServletResponse response, HttpServletRequest request){
 		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -61,7 +61,7 @@ public class AssessmentController {
 		}
 	}
 
-	@RequestMapping(value = "getById?assessmentId={assessmentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "getAssessmentById", method = RequestMethod.GET)
 	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
 		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
