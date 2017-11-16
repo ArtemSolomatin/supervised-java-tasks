@@ -3,11 +3,12 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {routes} from "../../routes";
 
 @Component({
   selector: 'app-assessments-remove',
   templateUrl: './assessments-remove.component.html',
-  styleUrls: [ './assessments-add.component.css' ]
+  styleUrls: [ '../assessments.component.css' ]
 })
 export class AssessmentsRemoveComponent {
   constructor(
@@ -21,7 +22,7 @@ export class AssessmentsRemoveComponent {
 
 
   removeAssessment(): void {
-    this.http.get(`http://localhost:8090/deleteAssessment?assessmentId=` + this.assessmentId)
+    this.http.get(`${routes.gateway}/deleteAssessment?assessmentId=${this.assessmentId}`)
       .subscribe(data => {
         console.log(data);
       this.assessments = data;

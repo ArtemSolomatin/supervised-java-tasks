@@ -3,11 +3,12 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {routes} from "../../routes";
 
 @Component({
   selector: 'app-students-remove',
   templateUrl: './students-remove.component.html',
-  styleUrls: [ './students-add.component.css' ]
+  styleUrls: [ '../students.component.css' ]
 })
 export class StudentsRemoveComponent {
   constructor(
@@ -20,7 +21,7 @@ export class StudentsRemoveComponent {
   studentId: string;
 
   removeStudent(): void {
-    this.http.get(`http://localhost:8090/deleteStudent?studentId=` + this.studentId)
+    this.http.get(`${routes.gateway}/deleteStudent?studentId=${this.studentId}`)
       .subscribe(data => {
         console.log(data);
         this.students = data;

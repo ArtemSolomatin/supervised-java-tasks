@@ -3,11 +3,12 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {routes} from "../../routes";
 
 @Component({
   selector: 'app-subject-add',
   templateUrl: './subjects-add.component.html',
-  styleUrls: [ './subjects-add.component.css' ]
+  styleUrls: [ '../subjects.component.css' ]
 })
 export class SubjectsAddComponent {
   constructor(
@@ -23,8 +24,8 @@ export class SubjectsAddComponent {
 
 
   addSubject(): void {
-    this.http.get(`http://localhost:8090/addSubject?subjectId=` + this.subjectId +
-      `&subjectNum=` + this.subjectNum + `&subjectName=` + this.subjectName).subscribe(data => {
+    this.http.get(`${routes.gateway}/addSubject?subjectId=${this.subjectId}&subjectNum=${this.subjectNum}
+    &subjectName=${this.subjectName}`).subscribe(data => {
       console.log(data);
       this.subjects = data;
     });

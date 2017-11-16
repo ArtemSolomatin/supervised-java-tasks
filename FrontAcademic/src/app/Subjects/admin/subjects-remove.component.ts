@@ -3,11 +3,12 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {routes} from "../../routes";
 
 @Component({
   selector: 'app-subjects-remove',
   templateUrl: './subjects-remove.component.html',
-  styleUrls: [ './subjects-add.component.css' ]
+  styleUrls: [ '../subjects.component.css' ]
 })
 export class SubjectsRemoveComponent {
   constructor(
@@ -20,7 +21,7 @@ export class SubjectsRemoveComponent {
   subjectId: string;
 
   removeSubject(): void {
-    this.http.get(`http://localhost:8090/deleteSubject?subjectId=` + this.subjectId)
+    this.http.get(`${routes.gateway}/deleteSubject?subjectId=${this.subjectId}`)
       .subscribe(data => {
         console.log(data);
         this.subjects = data;

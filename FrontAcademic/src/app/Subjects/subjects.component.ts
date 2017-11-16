@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {routes} from "../routes";
 
 @Component({
   selector: 'app-subjects',
@@ -19,7 +20,7 @@ export class SubjectsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Init');
-    this.http.get('http://localhost:8090/getAllSubjects').subscribe(data => {
+    this.http.get(`${routes.gateway}/getAllSubjects`).subscribe(data => {
       console.log(data);
       this.subjects = data;
     });

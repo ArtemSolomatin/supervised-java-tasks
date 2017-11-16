@@ -3,11 +3,12 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {routes} from "../../routes";
 
 @Component({
   selector: 'app-assessments-add',
   templateUrl: './assessments-add.component.html',
-  styleUrls: [ './assessments-add.component.css' ]
+  styleUrls: [ '../assessments.component.css' ]
 })
 export class AssessmentsAddComponent {
   constructor(
@@ -26,9 +27,9 @@ export class AssessmentsAddComponent {
 
 
   addAssessment(): void {
-    this.http.get(`http://localhost:8090/addAssessment?assessmentId=` + this.assessmentId +
-      `&studentId=` + this.studentId + `&subjectId=` + this.subjectId + `&semesterNum=` + this.semesterNum +
-    `&mark=` + this.mark + `&examinerSurname=` + this.examinerSurname).subscribe(data => {
+    this.http.get(`${routes.gateway}/addAssessment?assessmentId=${this.assessmentId}
+    &studentId=${this.studentId}&subjectId=${this.subjectId}&semesterNum=${this.semesterNum}
+    &mark=${this.mark}&examinerSurname=${this.examinerSurname}`).subscribe(data => {
       console.log(data);
       this.assessments = data;
     });

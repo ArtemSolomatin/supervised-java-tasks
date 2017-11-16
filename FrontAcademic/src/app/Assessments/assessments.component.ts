@@ -3,6 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {Http} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {routes} from "../routes";
 
 @Component({
   selector: 'app-assessments',
@@ -20,7 +21,7 @@ export class AssessmentsComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('Init');
-    this.http.get('http://localhost:8090/getAllAssessments').subscribe(data => {
+    this.http.get(`${routes.gateway}/getAllAssessments`).subscribe(data => {
       console.log(data);
       this.assessments = data;
     });

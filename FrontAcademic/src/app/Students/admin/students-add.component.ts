@@ -3,11 +3,12 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {routes} from "../../routes";
 
 @Component({
   selector: 'app-students-add',
   templateUrl: './students-add.component.html',
-  styleUrls: [ './students-add.component.css' ]
+  styleUrls: [ '../students.component.css' ]
 })
 export class StudentsAddComponent {
   constructor(
@@ -23,11 +24,10 @@ export class StudentsAddComponent {
   fullName: string;
   groupNum: string;
 
-
   addStudent(): void {
-    this.http.get(`http://localhost:8090/addStudent?studentId=` + this.studentId +
-      `&facultyId=` + this.facultyId + `&recordbookNum=` + this.recordbookNum + `&fullName=` +
-      this.fullName + `&groupNum=` + this.groupNum).subscribe(data => {
+    this.http.get(`${routes.gateway}/addStudent?studentId=${this.studentId}&facultyId=
+    ${this.facultyId}&recordbookNum=${this.recordbookNum}&fullName=${this.fullName}&groupNum=${this.groupNum}`)
+      .subscribe(data => {
       console.log(data);
       this.students = data;
     });

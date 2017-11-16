@@ -4,12 +4,12 @@ import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import {routes} from "../../routes";
 
-// TODO убрать все одинаоквые css и сделать ссылку на один
 @Component({
   selector: 'app-faculties-add',
   templateUrl: './faculties-add.component.html',
-  styleUrls: [ './faculties-add.component.css' ]
+  styleUrls: [ '../faculties.component.css' ]
 })
 export class FacultiesAddComponent {
   constructor(
@@ -24,8 +24,8 @@ export class FacultiesAddComponent {
   facultyName: string;
 
   addFaculty(): void {
-    this.http.get(`http://localhost:8090/addFaculty?facultyId=` + this.facultyId +
-      `&facultyNum=` + this.facultyNum + `&facultyName=` + this.facultyName).subscribe(data => {
+    this.http.get(`${routes.gateway}/addFaculty?facultyId=${this.facultyId}&facultyNum=${this.facultyNum}
+    &facultyName=${this.facultyName}`).subscribe(data => {
       console.log(data);
       this.faculties = data;
     });
