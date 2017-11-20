@@ -27,9 +27,7 @@ export class AssessmentsAddComponent {
 
 
   addAssessment(): void {
-    this.http.get(`${routes.gateway}/addAssessment?assessmentId=${this.assessmentId}
-    &studentId=${this.studentId}&subjectId=${this.subjectId}&semesterNum=${this.semesterNum}
-    &mark=${this.mark}&examinerSurname=${this.examinerSurname}`).subscribe(data => {
+    this.http.get(`${routes.gateway}/addAssessment?assessmentId=${this.assessmentId}&studentId=${this.studentId}&subjectId=${this.subjectId}&semesterNum=${this.semesterNum}&mark=${this.mark}&examinerSurname=${this.examinerSurname}`).subscribe(data => {
       console.log(data);
       this.assessments = data;
     });

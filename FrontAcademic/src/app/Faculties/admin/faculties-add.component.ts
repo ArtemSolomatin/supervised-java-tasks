@@ -24,8 +24,7 @@ export class FacultiesAddComponent {
   facultyName: string;
 
   addFaculty(): void {
-    this.http.get(`${routes.gateway}/addFaculty?facultyId=${this.facultyId}&facultyNum=${this.facultyNum}
-    &facultyName=${this.facultyName}`).subscribe(data => {
+    this.http.get(`${routes.gateway}/addFaculty?facultyId=${this.facultyId}&facultyNum=${this.facultyNum}&facultyName=${this.facultyName}`).subscribe(data => {
       console.log(data);
       this.faculties = data;
     });

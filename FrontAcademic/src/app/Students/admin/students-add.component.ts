@@ -25,8 +25,7 @@ export class StudentsAddComponent {
   groupNum: string;
 
   addStudent(): void {
-    this.http.get(`${routes.gateway}/addStudent?studentId=${this.studentId}&facultyId=
-    ${this.facultyId}&recordbookNum=${this.recordbookNum}&fullName=${this.fullName}&groupNum=${this.groupNum}`)
+    this.http.get(`${routes.gateway}/addStudent?studentId=${this.studentId}&facultyId=${this.facultyId}&recordbookNum=${this.recordbookNum}&fullName=${this.fullName}&groupNum=${this.groupNum}`)
       .subscribe(data => {
       console.log(data);
       this.students = data;

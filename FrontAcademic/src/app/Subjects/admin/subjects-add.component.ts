@@ -3,7 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import {routes} from '../../routes';
+import {routes} from "../../routes";
 
 @Component({
   selector: 'app-subject-add',
@@ -24,9 +24,7 @@ export class SubjectsAddComponent {
 
 
   addSubject(): void {
-    console.log(`looooooooooooooooooog${this.subjectNum}looooooooooog`);
-    this.http.get(`http://localhost:8090/addSubject?subjectId=${this.subjectId}&subjectNum=${this.subjectNum}
-    &subjectName=${this.subjectName}`).subscribe(data => {
+    this.http.get(`${routes.gateway}/addSubject?subjectId=${this.subjectId}&subjectNum=${this.subjectNum}&subjectName=${this.subjectName}`).subscribe(data => {
       console.log(data);
       this.subjects = data;
     });
