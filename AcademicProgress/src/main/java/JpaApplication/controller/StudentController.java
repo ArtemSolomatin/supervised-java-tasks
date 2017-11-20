@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Artem Solomatin on 22.09.17.
@@ -26,50 +27,37 @@ public class StudentController {
 	public @ResponseBody
 	List<Student> getAllStudents(HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		List<Student> students = studentService.getAll();
-		return students;
+		return studentService.getAll();
 	}
 
 	@RequestMapping(value = "addStudent", method = RequestMethod.GET)
 	//http://localhost:8090/addStudent?studentId=0&facultyId=2&recordbookNum=0&fullName=TestStudent&groupNum=533
-	public ModelAndView addStudent(HttpServletResponse response, HttpServletRequest request){
+	public void addStudent(HttpServletResponse response, HttpServletRequest request){
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		Integer recordbookNum = Integer.parseInt(request.getParameter("recordbookNum"));
 		String fullName = request.getParameter("fullName");
 		Integer groupNum = Integer.parseInt(request.getParameter("groupNum"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		String string = studentService.addStudent(studentId, facultyId, recordbookNum, fullName, groupNum);
-		return new ModelAndView("view/models/student", "resultObject",
-			"Object was added " + string);
+		studentService.addStudent(studentId, facultyId, recordbookNum, fullName, groupNum);
 	}
 
 	@RequestMapping(value = "deleteStudent", method = RequestMethod.GET)
-	public ModelAndView deleteStudent(HttpServletResponse response, HttpServletRequest request){
+	public void deleteStudent(HttpServletResponse response, HttpServletRequest request){
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		boolean res = studentService.delete(studentId);
-		if(res){
-			return new ModelAndView("view/models/student", "resultObject",
-					"Student was deleted");
-		}
-		else{
-			return new ModelAndView("view/models/student", "resultObject",
-					"Student wasn't deleted");
-		}
+		studentService.delete(studentId);
 	}
 
-	@RequestMapping(value = "getStudentById", method = RequestMethod.GET)
-	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
+	@RequestMapping(value = "getStudentById", method = RequestMethod.GET, headers="Accept=application/json")
+	public @ResponseBody Student getById(HttpServletResponse response, HttpServletRequest request){
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Student res = studentService.getById(studentId);
 		if(res != null) {
-			return new ModelAndView("view/models/student", "resultObject",
-				res);
+			return res;
 		}else{
-			return new ModelAndView("view/models/student", "resultObject",
-				"No such student in db");
+			throw new NoSuchElementException("Нет такого элемента в бд");
 		}
 	}
 }

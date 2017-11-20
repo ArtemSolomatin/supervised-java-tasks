@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Artem Solomatin on 23.09.17.
@@ -28,48 +29,35 @@ public class FacultyController {
 	public @ResponseBody
 	List<Faculty> getAllFaculties(HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		List<Faculty> faculties = facultyService.getAll();
-		return faculties;
+		return facultyService.getAll();
 	}
 
 	@RequestMapping(value = "addFaculty", method = RequestMethod.GET)
 	//http://localhost:8090/addFaculty?facultyId=0&facultyNum=6&facultyName=TestFaculty
-	public ModelAndView addFaculty(HttpServletResponse response, HttpServletRequest request){
+	public void addFaculty(HttpServletResponse response, HttpServletRequest request){
 		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		Integer facultyNum = Integer.parseInt(request.getParameter("facultyNum"));
 		String facultyName = request.getParameter("facultyName");
 		response.setHeader("Access-Control-Allow-Origin", "*");
-
-		String string = facultyService.addFaculty(facultyId, facultyNum, facultyName);
-		return new ModelAndView("view/models/faculty", "resultObject", "Object was added " + string);
+		facultyService.addFaculty(facultyId, facultyNum, facultyName);
 	}
 
 	@RequestMapping(value = "deleteFaculty", method = RequestMethod.GET)
-	public ModelAndView deleteFaculty(HttpServletResponse response, HttpServletRequest request){
+	public void deleteFaculty(HttpServletResponse response, HttpServletRequest request){
 		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		boolean res = facultyService.delete(facultyId);
-		if(res){
-			return new ModelAndView("view/models/faculty", "resultObject",
-				"Faculty was deleted");
-		}
-		else{
-			return new ModelAndView("view/models/faculty", "resultObject",
-				"Faculty wasn't deleted");
-		}
+		facultyService.delete(facultyId);
 	}
 
-	@RequestMapping(value = "getFacultyById", method = RequestMethod.GET)
-	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
+	@RequestMapping(value = "getFacultyById", method = RequestMethod.GET, headers="Accept=application/json")
+	public @ResponseBody Faculty getById(HttpServletResponse response, HttpServletRequest request){
 		Integer facultyId = Integer.parseInt(request.getParameter("facultyId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Faculty res = facultyService.getById(facultyId);
 		if(res != null) {
-			return new ModelAndView("view/models/faculty", "resultObject",
-				res);
+			return res;
 		}else{
-			return new ModelAndView("view/models/faculty", "resultObject",
-				"No such faculty in db");
+			throw new NoSuchElementException("No such faculty in db");
 		}
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Artem Solomatin on 23.09.17.
@@ -27,14 +28,12 @@ public class AssessmentController {
 	@RequestMapping(value = "getAllAssessments", method = RequestMethod.GET, headers="Accept=application/json")
 	public @ResponseBody List<Assessment> getAllStudents(HttpServletResponse response){
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		List<Assessment> assessments = assessmentService.getAll();
-		return assessments;
+		return assessmentService.getAll();
 	}
 
 	@RequestMapping(value = "addAssessment", method = RequestMethod.GET)
 	//http://localhost:8090/addAssessment?assessmentId=0&studentId=1&subjectId=2&semesterNum=3&mark=6&examinerSurname=TestExaminer
-	public ModelAndView addStudent(HttpServletResponse response, HttpServletRequest request
-	){
+	public void addStudent(HttpServletResponse response, HttpServletRequest request){
 		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
@@ -43,35 +42,24 @@ public class AssessmentController {
 		String examinerSurname = request.getParameter("examinerSurname");
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String string = assessmentService.addAssessment(assessmentId, studentId, subjectId, semesterNum, mark, examinerSurname);
-		return new ModelAndView("view/models/assessment", "resultObject", "Object was added " + string);
 	}
 
 	@RequestMapping(value = "deleteAssessment", method = RequestMethod.GET)
-	public ModelAndView deleteAssessment(HttpServletResponse response, HttpServletRequest request){
+	public void deleteAssessment(HttpServletResponse response, HttpServletRequest request){
 		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		boolean res = assessmentService.delete(assessmentId);
-		if(res){
-			return new ModelAndView("view/models/assessment", "resultObject",
-				"Assessment was deleted");
-		}
-		else{
-			return new ModelAndView("view/models/assessment", "resultObject",
-				"Assessment wasn't deleted");
-		}
+		assessmentService.delete(assessmentId);
 	}
 
-	@RequestMapping(value = "getAssessmentById", method = RequestMethod.GET)
-	public ModelAndView getById(HttpServletResponse response, HttpServletRequest request){
+	@RequestMapping(value = "getAssessmentById", method = RequestMethod.GET, headers="Accept=application/json")
+	public @ResponseBody Assessment getById(HttpServletResponse response, HttpServletRequest request){
 		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Assessment res = assessmentService.getById(assessmentId);
 		if(res != null) {
-			return new ModelAndView("view/models/assessment", "resultObject",
-				res);
+			return res;
 		}else{
-			return new ModelAndView("view/models/assessment", "resultObject",
-				"No such assessment in db");
+			throw new NoSuchElementException("No such assessment in db");
 		}
 	}
 }
