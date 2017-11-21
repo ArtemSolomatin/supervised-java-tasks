@@ -11,13 +11,13 @@
     <!-- TODO запретить всем доступ к файлам css и js -->
     <http auto-config="true">
         <!-- для локального развертывания -->
-        <!--<intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>-->
-        <!--<intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>-->
-        <!--<intercept-url pattern="/getAll*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>-->
-        <!--<intercept-url pattern="/getById/**" access="hasAnyRole('ROLE_ADMIN')"/>-->
-        <!--<intercept-url pattern="/add*/**" access="hasAnyRole('ROLE_ADMIN')"/>-->
-        <!--<intercept-url pattern="/delete*/**" access="hasAnyRole('ROLE_ADMIN')"/>-->
-        <!--<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>-->
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/getAll*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/getById/**" access="hasAnyRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/add*/**" access="hasAnyRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/delete*/**" access="hasAnyRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 
         <!-- Для развертывания на сервере -->
         <!--<intercept-url pattern="/academic-progress/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>-->
@@ -27,10 +27,10 @@
         <!--<intercept-url pattern="/academic-progress/admin" access="hasRole('ROLE_ADMIN')"/>-->
 
 
-        <!--<form-login login-page="/login" default-target-url="http://localhost:4200/students" authentication-failure-url="/login?error"-->
-                    <!--username-parameter="username" password-parameter="password"/>-->
+        <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"
+                    username-parameter="username" password-parameter="password"/>
 
-        <!--<logout logout-success-url="/login?logout"/>-->
+        <logout logout-success-url="/login?logout"/>
         <!--<csrf disabled="true" />-->
 
     </http>
