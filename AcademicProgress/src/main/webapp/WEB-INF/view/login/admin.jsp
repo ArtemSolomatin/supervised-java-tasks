@@ -19,8 +19,7 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
 
-            <h2><a onclick="document.forms['logoutForm'].submit()">Logout</a>
-            </h2>
+            <h2><a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
         </c:if>
     </div>
 
