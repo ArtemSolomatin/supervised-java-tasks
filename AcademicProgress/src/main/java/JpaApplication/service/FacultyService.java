@@ -9,8 +9,8 @@ import java.util.List;
  * AcademicProgress
  */
 public interface FacultyService {
-	String addFaculty(Integer facultyId, Integer facultyNum, String facultyName);
-	boolean delete(int id);
+	void addFaculty(Integer facultyId, Integer facultyNum, String facultyName);
+	void delete(int id);
 	Faculty getById(int id);
 	List<Faculty> getAll();
 }

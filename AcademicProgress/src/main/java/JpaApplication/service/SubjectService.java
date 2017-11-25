@@ -9,8 +9,8 @@ import java.util.List;
  * AcademicProgress
  */
 public interface SubjectService {
-	String addSubject(Integer subjectId, Integer subjectNum, String subjectName);
-	boolean delete(int id);
+	void addSubject(Integer subjectId, Integer subjectNum, String subjectName);
+	void delete(int id);
 	Subject getById(Integer id);
 	List<Subject> getAll();
 }

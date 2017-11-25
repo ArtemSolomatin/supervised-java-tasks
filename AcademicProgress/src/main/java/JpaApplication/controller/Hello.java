@@ -62,7 +62,6 @@ public class Hello {
 		return "view/login/login";
 	}
 
-	//TODO почему при попытке незалогиненного пользователя попасть на страничку welcome, его перенаправляет на login?
 	@RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
 	public String welcome(Model model) {
 		return "view/login/welcome";

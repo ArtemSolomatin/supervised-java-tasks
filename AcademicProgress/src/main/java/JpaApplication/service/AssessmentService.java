@@ -9,10 +9,9 @@ import java.util.List;
  * AcademicProgress
  */
 
-//TODO пересмотреть типы возвращаемых значений
 public interface AssessmentService {
-	String addAssessment(Integer assessmentId, Integer studentId, Integer subjectId, Integer semesterNum, Integer mark, String examinerSurname);
-	boolean delete(int id);
+	void addAssessment(Integer assessmentId, Integer studentId, Integer subjectId, Integer semesterNum, Integer mark, String examinerSurname);
+	void delete(int id);
 	Assessment getById(Integer assessmentId);
 	List<Assessment> getAll();
 }

@@ -27,7 +27,7 @@ public class AssessmentServiceImpl implements AssessmentService {
 	private EntityManager entityManager;
 
 	@Override
-	public String addAssessment(Integer assessmentId, Integer studentId, Integer subjectId, Integer semesterNum, Integer mark, String examinerSurname) {
+	public void addAssessment(Integer assessmentId, Integer studentId, Integer subjectId, Integer semesterNum, Integer mark, String examinerSurname) {
 		Query query = entityManager.createNativeQuery("INSERT INTO assessment values (?, ?, ?, ?, ?, ?)");
 		query.setParameter(1, assessmentId);
 		query.setParameter(2, studentId);
@@ -36,18 +36,12 @@ public class AssessmentServiceImpl implements AssessmentService {
 		query.setParameter(5, mark);
 		query.setParameter(6, examinerSurname);
 
-		int result = query.executeUpdate();
-		if(result > 0) return "successfully";
-		else return "unsuccessfully";
+		query.executeUpdate();
 	}
 
 	@Override
-	public boolean delete(int id) {
-		if(getById(id) == null){
-			return false;
-		}
+	public void delete(int id) {
 		assessmentRepository.deleteByAssessmentId(id);
-		return true;
 	}
 
 	@Override

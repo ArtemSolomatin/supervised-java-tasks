@@ -41,7 +41,7 @@ public class AssessmentController {
 		Integer mark = Integer.parseInt(request.getParameter("mark"));
 		String examinerSurname = request.getParameter("examinerSurname");
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		String string = assessmentService.addAssessment(assessmentId, studentId, subjectId, semesterNum, mark, examinerSurname);
+		assessmentService.addAssessment(assessmentId, studentId, subjectId, semesterNum, mark, examinerSurname);
 	}
 
 	@RequestMapping(value = "deleteAssessment", method = RequestMethod.GET)

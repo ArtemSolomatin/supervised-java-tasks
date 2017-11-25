@@ -27,24 +27,18 @@ public class SubjectServiceImpl implements SubjectService {
 	private EntityManager entityManager;
 
 	@Override
-	public String addSubject(Integer subjectId, Integer subjectNum, String subjectName) {
+	public void addSubject(Integer subjectId, Integer subjectNum, String subjectName) {
 		Query query = entityManager.createNativeQuery("INSERT INTO subject values (?, ?, ?)");
 		query.setParameter(1, subjectId);
 		query.setParameter(2, subjectNum);
 		query.setParameter(3, subjectName);
 
-		int result = query.executeUpdate();
-		if(result > 0) return "successfully";
-		else return "unsuccessfully";
+		query.executeUpdate();
 	}
 
 	@Override
-	public boolean delete(int id) {
-		if(getById(id) == null){
-			return false;
-		}
+	public void delete(int id) {
 		subjectRepository.deleteBySubjectId(id);
-		return true;
 	}
 
 	@Override

@@ -9,8 +9,8 @@ import java.util.List;
  * AcademicProgress
  */
 public interface StudentService {
-	String addStudent(Integer studentId, Integer facultyId, Integer recordbookNum, String fullName, Integer groupNum);
-	boolean delete(int id);
+	void addStudent(Integer studentId, Integer facultyId, Integer recordbookNum, String fullName, Integer groupNum);
+	void delete(int id);
 	Student getById(int studentId);
 	List<Student> getAll();
 }

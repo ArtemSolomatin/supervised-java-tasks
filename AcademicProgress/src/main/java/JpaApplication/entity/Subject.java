@@ -12,7 +12,7 @@ import java.util.Collection;
  */
 @Entity
 public class Subject implements Serializable {
-	private int subjectId;
+	private Integer subjectId;
 	private Integer subjectNum;
 	private String subjectName;
 	private Collection<Assessment> assessmentsBySubjectId;

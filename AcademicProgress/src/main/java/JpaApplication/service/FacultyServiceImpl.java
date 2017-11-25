@@ -27,24 +27,18 @@ public class FacultyServiceImpl implements FacultyService {
 	private EntityManager entityManager;
 
 	@Override
-	public String addFaculty(Integer facultyId, Integer facultyNum, String facultyName) {
+	public void addFaculty(Integer facultyId, Integer facultyNum, String facultyName) {
 		Query query = entityManager.createNativeQuery("INSERT INTO faculty values (?, ?, ?)");
 		query.setParameter(1, facultyId);
 		query.setParameter(2, facultyNum);
 		query.setParameter(3, facultyName);
 
-		int result = query.executeUpdate();
-		if(result > 0) return "successfully";
-		else return "unsuccessfully";
+		query.executeUpdate();
 	}
 
 	@Override
-	public boolean delete(int id) {
-		if(getById(id) == null){
-			return false;
-		}
+	public void delete(int id) {
 		facultyRepository.deleteByFacultyId(id);
-		return true;
 	}
 
 	@Override
