@@ -7,6 +7,8 @@ import java.io.Serializable;
  * Created by Artem Solomatin on 10.09.17.
  * AcademicProgress
  */
+
+//TODO убрать примитивы и заменить их обертками
 @Entity
 public class Assessment implements Serializable {
 	private int assessmentId;
