@@ -1,6 +1,10 @@
 package JpaApplication.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,44 +13,21 @@ import java.util.Set;
  * AcademicProgress
  */
 
+@ToString(exclude = "users")
 @Entity
 @Table(name = "roles")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Getter @Setter private Long id;
 
     @Column(name = "name")
-    private String name;
+	@Getter @Setter private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+	@Getter @Setter private Set<User> users;
 
     public Role() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 }
