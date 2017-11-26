@@ -9,7 +9,7 @@
     <base href="/">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/resources/favicon.ico">
-    <link href="/resources/css/styles.0ba23c7c09ff40e52aed.bundle.css" rel="stylesheet"/>
+    <link href="/resources/css/styles.bundle.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -24,9 +24,9 @@
 </div>
 
 <app-root></app-root>
-<script type="text/javascript" src="/resources/js/inline.7d05f64e983c1791a84b.bundle.js"></script>
-<script type="text/javascript" src="/resources/js/polyfills.ad37cd45a71cb38eee76.bundle.js"></script>
-<script type="text/javascript" src="/resources/js/main.7340bacaf3d93ca5cd5c.bundle.js"></script>
+<script type="text/javascript" src="/resources/js/inline.bundle.js"></script>
+<script type="text/javascript" src="/resources/js/polyfills.bundle.js"></script>
+<script type="text/javascript" src="/resources/js/main.bundle.js"></script>
 </body>
 
 </html>
