@@ -24,8 +24,8 @@ public class SecurityServiceImpl implements SecurityService {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	/*
-	чтоб попроветствовать залогиненного пользователя
+	/**
+	приветствуем залогиненного пользователя
 	 */
 	@Override
 	public String findLoggedInUsername() {

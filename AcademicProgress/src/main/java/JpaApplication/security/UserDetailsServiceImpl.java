@@ -20,9 +20,7 @@ import java.util.Set;
  * AcademicProgress
  *
  * Для того, чтобы связать сервис UserService со Spring Security, нужно реализовать специальный интерфейс фреймворка Spring Security который позволит выполнять аутентификацию пользователя на основании данных полученых с UserService
- *Авторизация осуществляется через XML-файл конфигурации appconfig-security.xml
- *
- * To implement login/authentication with Spring Security, we need to implement org.springframework.security.core.userdetails.UserDetailsService interface
+ *Авторизация осуществляется через XML-файл конфигурации spring-security.xml
  *
  */
 

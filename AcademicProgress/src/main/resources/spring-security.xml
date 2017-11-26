@@ -7,8 +7,7 @@
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
-
-    <!-- TODO запретить всем доступ к файлам css и js -->
+    
     <http auto-config="true">
         <!-- для локального развертывания -->
         <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
@@ -31,8 +30,6 @@
                     username-parameter="username" password-parameter="password"/>
 
         <logout logout-success-url="/login?logout"/>
-        <!--<csrf disabled="true" />-->
-
     </http>
 
 
