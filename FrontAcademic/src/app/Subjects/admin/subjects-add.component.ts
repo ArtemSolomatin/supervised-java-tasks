@@ -3,7 +3,8 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import {routes} from "../../routes";
+import {routes} from '../../routes';
+import {isNullOrUndefined, isUndefined} from "util";
 
 @Component({
   selector: 'app-subject-add',
@@ -24,6 +25,10 @@ export class SubjectsAddComponent {
 
 
   addSubject(): void {
+    if (isNullOrUndefined(this.subjectId) || isNullOrUndefined(this.subjectNum) || isNullOrUndefined(this.subjectName)) {
+      alert('Какое-то поле не проставлено');
+      return;
+    }
     this.http.get(`${routes.gateway}/addSubject?subjectId=${this.subjectId}&subjectNum=${this.subjectNum}&subjectName=${this.subjectName}`).subscribe(data => {
       console.log(data);
       this.subjects = data;

@@ -3,7 +3,8 @@ import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import {routes} from "../../routes";
+import {routes} from '../../routes';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-students-add',
@@ -12,7 +13,6 @@ import {routes} from "../../routes";
 })
 export class StudentsAddComponent {
   constructor(
-    private route: ActivatedRoute,
     private location: Location,
     private http: HttpClient
   ) {}
@@ -25,6 +25,11 @@ export class StudentsAddComponent {
   groupNum: string;
 
   addStudent(): void {
+    if (isNullOrUndefined(this.studentId) || isNullOrUndefined(this.facultyId) ||
+      isNullOrUndefined(this.recordbookNum) || isNullOrUndefined(this.recordbookNum) || isNullOrUndefined(this.groupNum)) {
+      alert('Какое-то поле не проставлено');
+      return;
+    }
     this.http.get(`${routes.gateway}/addStudent?studentId=${this.studentId}&facultyId=${this.facultyId}&recordbookNum=${this.recordbookNum}&fullName=${this.fullName}&groupNum=${this.groupNum}`)
       .subscribe(data => {
       console.log(data);

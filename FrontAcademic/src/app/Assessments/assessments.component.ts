@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
-import {Http} from '@angular/http';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {routes} from "../routes";
 
 @Component({
@@ -29,9 +28,5 @@ export class AssessmentsComponent implements OnInit{
 
   goBack(): void {
     this.location.back();
-  }
-
-  findAssessments(): void {
-// найти assessment по имени студента
   }
 }

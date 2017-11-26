@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {routes} from "../../routes";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-assessments-add',
@@ -27,6 +28,11 @@ export class AssessmentsAddComponent {
 
 
   addAssessment(): void {
+    if (isNullOrUndefined(this.assessmentId) || isNullOrUndefined(this.studentId) || isNullOrUndefined(this.subjectId) ||
+    isNullOrUndefined(this.semesterNum) || isNullOrUndefined(this.mark) || isNullOrUndefined(this.examinerSurname)) {
+      alert('Какое-то поле не проставлено');
+      return;
+    }
     this.http.get(`${routes.gateway}/addAssessment?assessmentId=${this.assessmentId}&studentId=${this.studentId}&subjectId=${this.subjectId}&semesterNum=${this.semesterNum}&mark=${this.mark}&examinerSurname=${this.examinerSurname}`).subscribe(data => {
       console.log(data);
       this.assessments = data;

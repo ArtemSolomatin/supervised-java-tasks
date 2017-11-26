@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {routes} from '../../routes';
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-faculties-remove',
@@ -21,6 +22,10 @@ export class FacultiesRemoveComponent {
   facultyId: string;
 
   removeFaculty(): void {
+    if (isNullOrUndefined(this.facultyId)) {
+      alert('Какое-то поле не проставлено');
+      return;
+    }
     this.http.get(`${routes.gateway}/deleteFaculty?facultyId=${this.facultyId}`)
       .subscribe(data => {
         console.log(data);
