@@ -1,3 +1,4 @@
 export let routes = {
-  gateway: 'http://localhost:8090'
+  // gateway: 'http://46.101.203.176:8080/'
+  gateway: ''
 };

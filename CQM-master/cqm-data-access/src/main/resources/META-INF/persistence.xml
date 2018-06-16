@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                                 http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+    <persistence-unit name="cqmProject" transaction-type="RESOURCE_LOCAL">
+
+        <class>org.cqm.data.entity.Cafeteria</class>
+        <class>org.cqm.data.entity.Report</class>
+        <class>org.cqm.data.entity.User</class>
+        <class>org.cqm.data.entity.Vote</class>
+        <properties>
+            <!--driver which we'll use in our work-->
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="qwe123"/>
+            <!--here is the status of the JPA's work-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>

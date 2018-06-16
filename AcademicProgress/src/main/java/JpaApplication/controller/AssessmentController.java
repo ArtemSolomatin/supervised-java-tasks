@@ -2,13 +2,12 @@ package JpaApplication.controller;
 
 import JpaApplication.entity.Assessment;
 import JpaApplication.service.AssessmentService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,11 +29,11 @@ public class AssessmentController {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		return assessmentService.getAll();
 	}
-
+//TODO удалить все пробелы
 	@RequestMapping(value = "addAssessment", method = RequestMethod.GET)
 	//http://localhost:8090/addAssessment?assessmentId=0&studentId=1&subjectId=2&semesterNum=3&mark=6&examinerSurname=TestExaminer
 	public void addStudent(HttpServletResponse response, HttpServletRequest request){
-		Integer assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
+		Integer assessmentId = Integer.parseInt(StringUtils.deleteWhitespace(request.getParameter("assessmentId")));
 		Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 		Integer subjectId = Integer.parseInt(request.getParameter("subjectId"));
 		Integer semesterNum = Integer.parseInt(request.getParameter("semesterNum"));
